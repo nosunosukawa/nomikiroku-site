@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>のみきろく — プライバシーポリシー（開発者はあなたの記録を見られません）</title>
+<meta name="description" content="のみきろくは何も収集しません。アカウントなし、解析なし、広告なし、開発者のサーバーなし。記録はご自身のiCloudにだけ保存され、ご家族との共有はオプトインで、いつでも1タップで止められます。">
+<style>
+  /* index.html と同じトークン（アプリ本体の Design/Paper.swift 由来） */
+  :root{
+    --bg:#FAF8F3; --card:#FFFFFF; --ink:#2A2926; --ink-soft:#5D5A54;
+    --accent:#5B7C5A; --ok:#5B7C5A; --line:#DCD6C9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1B1A18; --card:#242220; --ink:#ECE7DD; --ink-soft:#B4ADA1;
+      --accent:#7FA37E; --ok:#7FA37E; --line:#38342E;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.7;padding:24px 20px 64px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto}
+  header{margin:20px 0 30px}
+  h1{font-size:28px;line-height:1.2;letter-spacing:-.4px;font-weight:800}
+  .lead{margin-top:14px;font-size:17px;line-height:1.6;font-weight:600}
+  .date{margin-top:10px;font-size:13px;color:var(--ink-soft)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px;display:flex;gap:14px;align-items:stretch}
+  .card + .card{margin-top:10px}
+  .pad{width:5px;border-radius:2.5px;flex:none;background:var(--ok)}
+  .body{flex:1}
+  .card h2{font-size:16px;margin-bottom:6px;letter-spacing:-.2px}
+  .card p{font-size:15px}
+  .card p + p{margin-top:8px}
+  .card ul{padding-left:20px;margin-top:8px}
+  .card li{font-size:15px;margin-top:4px}
+  a{color:var(--accent);font-weight:600;text-decoration:none}
+  a:hover{text-decoration:underline}
+  footer{margin-top:44px;text-align:center;color:var(--ink-soft);font-size:13px}
+</style>
+<link rel="canonical" href="https://nosunosukawa.github.io/nomikiroku-site/privacy.html">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>のみきろく — プライバシーポリシー</h1>
+    <p class="lead">のみきろくは、あなたの情報を一切収集しません。
+       記録はご自身の iCloud にだけ保存され、開発者が中身を見ることはできません。</p>
+    <p class="date">最終更新: 2026年8月17日</p>
+  </header>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>収集するもの</h2>
+      <p>ありません。このアプリにはアクセス解析・クラッシュレポート・広告識別子・
+         データを集める第三者SDKが1つも入っていません。開発者があなたのお薬の名前・
+         飲んだ記録・体調メモ・お名前・端末情報・位置情報を受け取ることはありません。
+         アカウント登録もありません。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>データの置き場所</h2>
+      <p>お薬・飲んだ記録・通院の予定・体調メモ・設定は、端末内のデータベースと、
+         <strong>ご自身の iCloud（Apple のアカウント）</strong>に保存されます。
+         機種を変えたときやアプリを入れ直したときに記録が消えないためのものです。</p>
+      <p>この保存先は Apple が提供する仕組み（CloudKit のプライベートデータベース）で、
+         <strong>開発者はここに入ったデータを見ることも取り出すこともできません</strong>。
+         開発者のサーバーは存在しません。</p>
+      <p>iCloud にサインインしていない場合や空きが足りない場合は、記録はその端末の中だけに
+         残ります。いまどちらの状態かは、アプリの設定の［iCloudへの保存］に常に表示しています。
+         アプリを削除すると端末内のデータは消えます（iCloud に入った分は、
+         同じ Apple ID で入れ直すと戻ります）。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>ご家族との共有</h2>
+      <p>共有は<strong>初期状態でオフ</strong>です。ご自身で有効にしない限り、
+         誰にも記録は見えません。有効にするときは、共有される内容を箇条書きでお示しし、
+         別に同意のボタンを置いています（同意した日を保存します）。</p>
+      <p>共有できるのは<strong>お一人まで</strong>です。共有されるのは次の内容です。</p>
+      <ul>
+        <li>お薬の名前と薬効分類</li>
+        <li>飲んだ・飲まなかったの記録</li>
+        <li>お薬の残りと、終わる見込みの日</li>
+        <li>次の受診の予定</li>
+        <li>体調メモ（<strong>共有しない設定にできます。</strong>そのときは送られません）</li>
+      </ul>
+      <p>受け渡しは Apple の仕組み（CloudKit の共有）で行われ、開発者のサーバーは経由しません。
+         共有は<strong>いつでも1タップで止められ、止めるとご家族の画面からはすぐに
+         見えなくなります</strong>（ご家族の端末に記録を保存しない作りにしているためです）。</p>
+      <p>ご家族が代わりに記録を付けることもできます。その分には「家族が記録」と印が残り、
+         お医者さんに渡す紙にも印が出ます。ご家族ができるのは記録を付けることだけで、
+         お薬の追加・削除・処方の変更はできません。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>作った紙と書き出したファイル</h2>
+      <p>持参薬リスト・災害時のお薬カード・服薬の記録（PDF）と、表の形で書き出した
+         ファイル（CSV）は、あなたの端末の中で作られます。どこかへ自動で送られることは
+         ありません。印刷・保存・送信の宛先は、そのつどあなたが選びます。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>お知らせ（通知）</h2>
+      <p>お薬の時間のお知らせは、この端末の中だけで組み立てられます。
+         開発者のサーバーからのプッシュ通知は使っていません。</p>
+      <p>お知らせの文面には、既定でお薬の名前を入れません。ロック画面に薬名が出ると、
+         ご病気が他の方に伝わってしまうためです。設定で表示に変えることもできます。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>購入</h2>
+      <p>「のみきろく Plus」の決済は Apple が App Store を通じて処理します。
+         アプリはこの Apple ID が購入済みかどうかを Apple に問い合わせるだけで、
+         お支払いの情報がアプリや開発者に渡ることはありません。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>お薬の情報の出典</h2>
+      <p>アプリに入っているお薬の名前と薬効分類は、厚生労働省の
+         薬価基準収載品目リスト（内用薬・注射薬・外用薬）を出典としています。
+         本アプリが検索用に加工しています。この参照はすべて端末内で行われ、
+         通信は発生しません。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>子どもについて</h2>
+      <p>このアプリは一般向けのユーティリティです。子どもを含め、誰からも
+         意図的に情報を収集することはありません。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad"></div>
+    <div class="body">
+      <h2>変更と連絡先</h2>
+      <p>このポリシーを変更する場合は、更新した本文をアプリと一緒に配布し、
+         このページにも新しい日付で掲載します。</p>
+      <p>このポリシーについてのご質問:
+         <a href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a></p>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Nobutaka Kawasaki · <a href="index.html">サポート</a>
+  </footer>
+
+</div>
+</body>
+</html>

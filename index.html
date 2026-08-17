@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <title> を「Support」にしない。AI の引用面にも検索にも載らなくなる（他アプリで実測） -->
+<title>のみきろく — 朝の一袋を1タップで。お知らせが止まらない服薬記録アプリ</title>
+<meta name="description" content="一包化の分包紙のまま「朝」「昼」「夕」「寝前」ごとに1タップで記録できるiPhoneの服薬記録アプリのサポートページ。広告ゼロ・データ収集ゼロ。お知らせが途中で止まらない作りと、離れて暮らすご家族との共有について。">
+<style>
+  /* 配色はアプリ本体の Design/Paper.swift のトークンと同じ。
+     画面と地続きに見えることが、審査でも利用者にとっても信用になる */
+  :root{
+    --bg:#FAF8F3; --card:#FFFFFF; --ink:#2A2926; --ink-soft:#5D5A54;
+    --accent:#5B7C5A; --ok:#5B7C5A; --low:#8F6400; --high:#B8543F; --line:#DCD6C9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1B1A18; --card:#242220; --ink:#ECE7DD; --ink-soft:#B4ADA1;
+      --accent:#7FA37E; --ok:#7FA37E; --low:#C79A3C; --high:#DB7A66; --line:#38342E;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.7;padding:24px 20px 64px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto}
+
+  header{margin:20px 0 32px}
+  h1{font-size:36px;line-height:1.1;letter-spacing:-.5px;font-weight:800}
+  header p{margin-top:10px;font-size:16px;color:var(--ink-soft)}
+  .claim{display:inline-block;margin-top:16px;font-size:13px;font-weight:800;
+    letter-spacing:.4px;color:var(--accent);border:1.5px solid var(--accent);
+    border-radius:8px;padding:6px 11px}
+
+  h2{font-size:12px;letter-spacing:1.4px;color:var(--ink-soft);
+    margin:38px 0 12px;font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px;display:flex;gap:14px;align-items:stretch}
+  .card + .card{margin-top:10px}
+  .pad{width:5px;border-radius:2.5px;flex:none;background:var(--line)}
+  .pad.ok{background:var(--ok)} .pad.low{background:var(--low)}
+  .pad.high{background:var(--high)} .pad.accent{background:var(--accent)}
+  .body{flex:1}
+  .card h3{font-size:16px;margin-bottom:6px;letter-spacing:-.2px}
+  .card p,.card li{font-size:15px}
+  .card ul{padding-left:20px;margin-top:8px}
+  .card li{margin-top:4px}
+  .card p + p{margin-top:8px}
+  a{color:var(--accent);font-weight:600;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .muted{color:var(--ink-soft);font-size:13.5px}
+  footer{margin-top:44px;text-align:center;color:var(--ink-soft);font-size:13px}
+</style>
+<meta property="og:title" content="のみきろく — 朝の一袋を1タップで記録する服薬アプリ">
+<meta property="og:description" content="一包化の分包紙のまま、時点ごとに1タップ。広告ゼロ・データ収集ゼロ。お知らせが途中で止まらない作りにしています。">
+<meta property="og:url" content="https://nosunosukawa.github.io/nomikiroku-site/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://nosunosukawa.github.io/nomikiroku-site/">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>のみきろく</h1>
+    <p>薬局でもらう一包化の分包紙と同じ「朝」「昼」「夕」「寝前」のまとまりで、
+       お薬の記録をつけるiPhoneアプリです。5種類飲んでいても、朝は1タップで終わります。
+       お知らせから、アプリを開かずに記録できます。</p>
+    <span class="claim">広告ゼロ・データ収集ゼロ</span>
+  </header>
+
+  <h2 id="support">サポート</h2>
+  <div class="card">
+    <div class="pad accent"></div>
+    <div class="body">
+      <h3>連絡先</h3>
+      <p>ご質問・不具合のご報告・お薬の名前や表示の指摘はこちらへ:
+         <a href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a></p>
+      <p class="muted">個人で開発しています。全部読みます。返信は1〜2日いただくことがあります。
+         お知らせが鳴らなかったときは、<strong>お薬の名前・時点（朝／昼／夕／寝前）・
+         鳴らなかった日</strong>を書いて送ってください。設定画面の「通知の状態」に出ている
+         数字（予約されている数・最後に作り直した）も一緒にいただけると原因が絞れます。</p>
+    </div>
+  </div>
+
+  <h2>だいじな注意</h2>
+  <div class="card">
+    <div class="pad high"></div>
+    <div class="body">
+      <h3>このアプリは、お薬について何も判断しません</h3>
+      <p>記録とお知らせをするだけです。飲み合わせの確認も、飲み忘れたときの対処も示しません。
+         お医者さんや薬剤師さんの代わりにはなりません。</p>
+      <p>体調が悪いときは、アプリを見ずに医療機関へご連絡ください。
+         いつもと違うと感じたときは、かかりつけの医療機関にご相談ください。</p>
+      <p class="muted">お薬の分類名は、厚生労働省の薬価基準収載品目リストに書かれている名前を
+         そのまま転記しているだけで、「何のためのお薬か」をアプリが説明することはありません。</p>
+    </div>
+  </div>
+
+  <h2>よくある質問</h2>
+
+  <div class="card">
+    <div class="pad ok"></div>
+    <div class="body">
+      <h3>無料でどこまで使えますか？</h3>
+      <p><strong>お薬の時間のお知らせと、飲んだ記録は、これからもずっと無料です。</strong>
+         お薬の登録は種類の制限なし、手帳は全期間見返せます。通院の予定と体調メモ、
+         広告が出ないことも無料の側です。</p>
+      <p>有料の「のみきろく Plus」でできるのは、記録を<strong>持ち出すことと、
+         先を見ること</strong>です。お薬の残りと終わる見込みの日、離れて暮らすご家族との共有、
+         入院や災害のときに渡せる紙（PDF）、記録の書き出し（CSV）。</p>
+      <p class="muted">最初の30日は全部の機能をお試しいただけます。自動で更新されることはなく、
+         カードの登録も要りません。飲み忘れを防ぐ機能にお金を払っていただく作りにはしていません。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad high"></div>
+    <div class="body">
+      <h3>お知らせが途中で来なくなりませんか？</h3>
+      <p>iPhone は1つのアプリにつき<strong>64件</strong>までしかお知らせを覚えていられません。
+         お薬1種類ごとに予約する作りだと、種類が多い方は1週間ほどで枠が尽きて、
+         そこから先が黙って鳴らなくなります。</p>
+      <p>のみきろくは<strong>時点ごとに1件だけ</strong>予約し、毎日飲むお薬は
+         「繰り返し」の予約で1件に収めています。予約の数が上限に近づいたら、
+         遠い予定から自動で削って入れ替えます。</p>
+      <p>そのうえで、<strong>いま何件予約できているかを設定画面に出しています</strong>。
+         止まっていることに気づけない作りにはしません。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad accent"></div>
+    <div class="body">
+      <h3>お知らせを押すだけで記録できますか？</h3>
+      <p>できます。お知らせの［飲んだ］を押すと、アプリが開かないまま、
+         その時点のお薬すべてに記録が付きます。あとで［あとで］を押すと、
+         しばらくしてからもう一度お知らせします。</p>
+      <p class="muted">お知らせの文面には、既定でお薬の名前を出していません。
+         ロック画面に薬名が出ると、ご病気が他の方に伝わってしまうためです。
+         設定で表示に変えることもできます。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad ok"></div>
+    <div class="body">
+      <h3>お薬が登録できません／名前が見つかりません</h3>
+      <p>厚生労働省の薬価基準収載品目リスト（内用・注射・外用）から
+         <strong>12,400件</strong>をアプリに入れてあります。ひらがな・カタカナ・半角の
+         どれで入力しても引けます。それでも出てこないときは、
+         <strong>手で名前を入れて登録できます</strong>。登録できないお薬はありません。</p>
+      <p class="muted">お薬手帳のQRコードの読み取りは、実際の調剤明細で確かめられるまで
+         入れていません。推測で作って読み違えると、飲む量が違って記録されます。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad low"></div>
+    <div class="body">
+      <h3>夜中に飲んだお薬が、翌日の記録になってしまいます</h3>
+      <p>1日のはじまりを何時にするかを、<strong>設定 →［1日の区切り］</strong>で
+         0時から6時まで選べます。既定は4時なので、深夜3時に飲んだ寝る前のお薬は
+         前の日の記録になります。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad accent"></div>
+    <div class="body">
+      <h3>離れて暮らす家族と共有できますか？</h3>
+      <p>できます。<strong>設定 →［ご家族と共有する］</strong>から、共有される内容を
+         ご確認いただいたうえで、LINE・メール・AirDropで招待を送れます。
+         共有できるのはお一人までです。</p>
+      <p>ご家族の画面には、今日の時点ごとの記録・直近14日・お薬の一覧・お薬の残り・
+         次の受診の予定が出ます。ご家族が代わりに記録することもできて、
+         その分には<strong>「家族が記録」と印が残ります</strong>（お医者さんに渡す紙にも出ます）。</p>
+      <p><strong>体調メモを共有から外す設定</strong>があります。外したときは、
+         そもそも送られません。共有はいつでも1タップでやめられて、
+         やめるとご家族の画面からはすぐに見えなくなります。</p>
+      <p class="muted">記録が届かなくなったときのために、ご家族の画面には
+         「最終受信」を常に出しています。1日以上・3日以上届かないときは、
+         その旨をご家族の画面にお知らせします。
+         なお、<strong>飲んでいないことをご家族に自動でお知らせすることはありません</strong>。
+         見張られている感じにしないためです。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad ok"></div>
+    <div class="body">
+      <h3>入院のときに渡す紙は作れますか？</h3>
+      <p>作れます。<strong>おくすり →［紙に出す・表で出す］</strong>から3種類出せます。</p>
+      <ul>
+        <li><strong>持参薬リスト</strong>（A4・1枚）— 入院・転院・介護施設で「いま何を飲んでいるか」を渡す</li>
+        <li><strong>災害時のお薬カード</strong>（名刺サイズ4面）— 切ってお財布に入れておく</li>
+        <li><strong>服薬の記録</strong>（A4・1か月）— 受診のときにお医者さんへ渡す</li>
+      </ul>
+      <p>プリンタがあれば［印刷する］でそのまま送れます。無い場合は［共有する］→
+         ［ファイルに保存］で保存して、コンビニのマルチコピー機で印刷できます。</p>
+      <p class="muted">記録は表（CSV）でも書き出せます。ExcelやNumbersでそのまま開けます。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad low"></div>
+    <div class="body">
+      <h3>お薬の残りの数が合いません</h3>
+      <p>記録していない分は差し引かれないので、実物とはずれていきます。ずれて当たり前という
+         前提の作りにしてあり、<strong>おくすりの画面の［手元の残りを数えて入れる］</strong>で
+         いつでも数え直せます。</p>
+      <p class="muted">「飲んだ」と記録した分だけを引いています。記録なしの分を
+         「たぶん飲んだ」として引くことはしません。推測を混ぜると、
+         お薬が終わる見込みの日が信用できなくなります。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad accent"></div>
+    <div class="body">
+      <h3>買ったのに、有料の機能が使えません</h3>
+      <p>購入時と同じ Apple ID でサインインした状態で、
+         <strong>設定 →［購入したものを復元する］</strong>を押してください。
+         購入は Apple ID に紐づくので、機種を変えても引き継がれます。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad low"></div>
+    <div class="body">
+      <h3>機種を変えるときは？</h3>
+      <p>記録はご自身の iCloud に保存されているので、新しい iPhone で同じ Apple ID に
+         サインインしてアプリを入れると戻ります。</p>
+      <p class="muted">戻るのは <strong>iCloud に保存できた分まで</strong>です。
+         iCloud にサインインしていない場合や空きが足りない場合は、その端末の中だけに
+         残ります。いまどちらの状態かは、設定の［iCloudへの保存］に常に出しています。
+         念のため、大事な記録は表（CSV）で書き出して保存しておくこともできます。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad ok"></div>
+    <div class="body">
+      <h3>文字が小さくて読めません</h3>
+      <p><strong>設定 →［文字の大きさ］</strong>で、このアプリの中だけ大きくできます。
+         iPhone 本体の設定を触る必要はありません。選んだ結果はその場で見本に反映されます。</p>
+    </div>
+  </div>
+
+  <h2>収集しません</h2>
+  <div class="card">
+    <div class="pad ok"></div>
+    <div class="body">
+      <h3>開発者は、あなたの記録を見られません</h3>
+      <p>アクセス解析も、広告も、開発者のサーバーもありません。アカウント登録も不要です。
+         お薬の名前・飲んだ記録・体調メモが、開発者や第三者に渡ることは一切ありません。</p>
+      <p>記録は<strong>ご自身の iCloud</strong>（Apple のアカウント）に保存されます。
+         これは端末を変えても記録が消えないためのもので、開発者が中身を見ることはできません。
+         ご家族との共有をオンにしたときだけ、共有した<strong>お一人</strong>に、
+         ご確認いただいた内容が見えるようになります。</p>
+      <p class="muted">くわしくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="pad accent"></div>
+    <div class="body">
+      <h3>お薬の情報の出典</h3>
+      <p>出典: 厚生労働省 薬価基準収載品目リスト（内用薬・注射薬・外用薬）。
+         本アプリが検索用に加工しています。</p>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Nobutaka Kawasaki · <a href="privacy.html">プライバシーポリシー</a>
+  </footer>
+
+</div>
+</body>
+</html>

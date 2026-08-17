@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nosunosukawa.github.io/nomikiroku-site/sitemap.xml
