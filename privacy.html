@@ -3,72 +3,96 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FAF8F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16150F" media="(prefers-color-scheme: dark)">
 <title>のみきろく — プライバシーポリシー（開発者はあなたの記録を見られません）</title>
 <meta name="description" content="のみきろくは何も集めません。会員登録なし、利用のようすを集める仕組みなし、広告なし、開発者のサーバーなし。記録はご自身のiCloudにだけ保存されます。ご家族との共有ははじめの状態ではオフで、いつでも1回押すだけでやめられます。">
 <style>
   /* index.html と同じトークン・同じ文字の大きさ（アプリ本体の Design/Paper.swift 由来）。
      読み手は60〜80代のご本人と、そのご家族。本文は18px以上・行間ゆったり。
      法的な本文そのものは変えていない（見た目だけを index.html に合わせた） */
+  /* 意匠は index.html / support.html と同じトークン。
+     法的な本文そのものは1文字も変えていない（見た目だけを合わせた）。
+     第2波で最小の文字を 17px → 19px に上げた。 */
   :root{
-    --bg:#FAF8F3; --card:#FFFFFF; --ink:#1F1E1C; --ink-soft:#4A473F;
-    --accent:#3F5C3E; --accent-soft:#EDF2EC; --line:#D3CCBD; --line-strong:#948B77; --line-soft:#E6E0D3;
+    color-scheme:light dark;
+    --bg:#FAF8F3; --card:#FFFFFF; --ink:#1D1B16; --ink-soft:#4E4A42;
+    --accent:#3D5A3C; --accent-soft:#EDF2EC;
+    --line:#DCD6C8; --line-strong:#948B77; --line-soft:#DCD6C8;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg:#171614; --card:#221F1C; --ink:#F2EEE5; --ink-soft:#C4BDB0;
-      --accent:#93BC91; --accent-soft:#232B22; --line:#413C34; --line-strong:#7E7565; --line-soft:#332F29;
+      --bg:#16150F; --card:#201E17; --ink:#EFEBE0; --ink-soft:#C3BCAC;
+      --accent:#9CBE9A; --accent-soft:#232B22;
+      --line:#3A3730; --line-strong:#7E7565; --line-soft:#3A3730;
     }
   }
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
-  body{background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:18px;line-height:1.9;padding:0 18px 72px;-webkit-font-smoothing:antialiased;
+  html{-webkit-text-size-adjust:100%;scroll-padding-top:24px}
+  body{touch-action:manipulation;-webkit-tap-highlight-color:rgba(61,90,60,.18);background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","ヒラギノ角ゴシック","Hiragino Kaku Gothic ProN",
+                "Yu Gothic","YuGothic","Noto Sans JP",-apple-system,sans-serif;
+    font-size:19px;line-height:1.9;-webkit-font-smoothing:antialiased;
     overflow-wrap:break-word}
-  .wrap{max-width:700px;margin:0 auto}
+  h1,h2,.head-name{
+    font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN W4","Hiragino Maru Gothic Pro",
+                "Yu Gothic Medium","YuGothic","Noto Sans JP",sans-serif;
+  }
+  .wrap{max-width:620px;margin:0 auto;padding:0 16px 72px}
 
-  a{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+  a{color:var(--accent);font-weight:700;
+    text-decoration:underline;text-decoration-color:currentColor;text-underline-offset:4px}
   a:hover{text-decoration-thickness:2px}
   :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 
-  .toplinks{display:grid;gap:10px;grid-template-columns:1fr 1fr;padding:14px 0 0}
-  .toplinks a{display:flex;align-items:center;justify-content:center;text-align:center;
-    min-height:56px;padding:10px 8px;font-size:17px;font-weight:700;line-height:1.4;
-    background:var(--card);border:2px solid var(--line-strong);border-radius:12px}
-  @media (max-width:400px){ .toplinks{grid-template-columns:1fr} }
+  /* ヘッダー: アプリ名が先。必須URLは下線リンクで残す */
+  .head{border-bottom:1px solid var(--line)}
+  .head-in{max-width:620px;margin:0 auto;padding:0 16px;
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 20px}
+  .head-name{font-size:21px;font-weight:800;line-height:1.4}
+  .head-name a{display:inline-flex;align-items:center;min-height:48px}
+  .head-links{display:flex;gap:20px}
+  .head-links a{display:inline-flex;align-items:center;min-height:48px;font-size:19px}
 
-  header{margin:26px 0 22px}
-  h1{font-size:32px;line-height:1.35;letter-spacing:-.4px;font-weight:800}
-  .lead{margin-top:16px;font-size:20px;line-height:1.8;font-weight:600}
-  .date{margin-top:12px;font-size:17px;color:var(--ink-soft)}
-  .card{background:var(--card);border:2px solid var(--line-soft);border-radius:16px;padding:20px}
+  header{margin:36px 0 22px}
+  h1{font-size:30px;text-wrap:balance;line-height:1.4;letter-spacing:-.01em;font-weight:800}
+  .lead{margin-top:16px;font-size:21px;line-height:1.8;font-weight:600}
+  .date{margin-top:12px;font-size:19px;color:var(--ink-soft)}
+  .card{background:var(--card);border:1px solid var(--line-strong);border-radius:16px;padding:20px}
   .card + .card{margin-top:14px}
-  .card h2{font-size:22px;line-height:1.6;margin-bottom:6px;font-weight:800}
-  .card p{font-size:18px}
+  .card h2{font-size:24px;line-height:1.6;margin-bottom:6px;font-weight:800}
+  .card p{font-size:19px}
   .card p + p{margin-top:12px}
   .card ul{padding-left:1.3em;margin-top:12px}
-  .card li{font-size:18px;margin-top:8px}
+  .card li{font-size:19px;margin-top:8px}
   .card li::marker{color:var(--accent)}
   .mailbtn{display:flex;align-items:center;justify-content:center;text-align:center;
-    min-height:60px;margin-top:12px;padding:12px 14px;font-size:19px;font-weight:800;
-    word-break:break-all;color:var(--accent);background:var(--accent-soft);
+    min-height:64px;margin-top:12px;padding:12px 14px;font-size:21px;font-weight:800;
+    overflow-wrap:anywhere;color:var(--accent);background:var(--accent-soft);
     border:2px solid var(--accent);border-radius:12px;text-underline-offset:4px}
-  footer{margin-top:56px;padding-top:12px;border-top:2px solid var(--line-soft);
-    text-align:center;color:var(--ink-soft);font-size:17px;line-height:2}
-  footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px}
+  footer{margin-top:56px;padding-top:12px;border-top:1px solid var(--line-soft);
+    text-align:center;color:var(--ink-soft);font-size:19px;line-height:2}
+  footer a{display:inline-flex;align-items:center;min-height:48px;padding:0 4px}
+  section[id],h2[id],h3[id]{scroll-margin-top:24px}
 </style>
 <link rel="canonical" href="https://nosunosukawa.github.io/nomikiroku-site/privacy.html">
 </head>
 <body>
-<div class="wrap">
 
-  <nav class="toplinks" aria-label="サポートとお問い合わせ">
-    <a href="index.html">サポートの<br>ページへ戻る</a>
-    <a href="mailto:nosunosukawa@gmail.com">お問い合わせ<br>（メール）</a>
-  </nav>
+<div class="head">
+  <div class="head-in">
+    <span class="head-name"><a href="index.html">のみきろく</a></span>
+    <nav class="head-links" aria-label="ほかのページ">
+      <a href="index.html">最初のページ</a>
+      <a href="support.html">サポート</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
 
   <header>
     <h1>のみきろく — プライバシーポリシー</h1>
@@ -166,7 +190,8 @@
 
   <footer>
     © 2026 Nobutaka Kawasaki<br>
-    <a href="index.html">サポートのページ</a> ·
+    <a href="index.html">最初のページ</a> ·
+    <a href="support.html">サポート</a> ·
     <a href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a>
   </footer>
 

@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FAF8F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16150F" media="(prefers-color-scheme: dark)">
 <!-- <title> を「Support」にしない。AI の引用面にも検索にも載らなくなる（他アプリで実測） -->
 <title>のみきろく — 飲んだら指で1回。お薬の記録と、飲み忘れのお知らせ（iPhoneアプリ）</title>
 <meta name="description" content="のみきろくは、お薬を飲んだことを記録するiPhoneのアプリです。朝・昼・夕・寝前のまとまりごとに指で1回押すだけ。時間になるとお知らせします。病院や入院に持っていく紙も作れます。広告なし・データ収集なし。お問い合わせとプライバシーポリシーはこのページから。">
@@ -12,132 +14,181 @@
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://nosunosukawa.github.io/nomikiroku-site/">
 <style>
-  /* 配色はアプリ本体の Design/Paper.swift のトークンと同じ。
-     画面と地続きに見えることが、審査でも利用者にとっても信用になる。
+  /* ============================================================
+     のみきろく LP（第2波・骨から作り直し）
 
-     この版の方針＝「大きな文字の、やさしい説明書」。
-     読み手は服薬を続けているご本人（60〜80代）と、離れて暮らすご家族（40〜60代）。
-     本文は18px以上、行間ゆったり、押すところは最低56pxの高さ。
-     リンクは必ず下線を引く（色だけで意味を伝えない）。 */
+     方針: 「見て分かる面」。文章は絵のキャプションの長さに収める。
+     ただし文字を減らすために字は小さくしない ―― 最小 19px（第1波は17px）。
+
+     色はアプリの実物から採った（スクリーンショットの画素を直接読んだ値）。
+       地 #FAF8F3 / 「飲んだ」ボタンの緑 #5B7C5A
+       時刻の帯 朝#FDF2D6 昼#EAF2E6 夕#E7ECF4 寝前#EDE7F2
+     時刻の4色はページ内で1か所（シグネチャの帯）にしか出さない。
+
+     動きは1つも作らない。@keyframes も transition も無い。
+     この読者は prefers-reduced-motion を設定していないことが多く、
+     「操作したのか勝手に動いたのか」を判断させないため。
+     ============================================================ */
   :root{
-    --bg:#FAF8F3; --card:#FFFFFF; --ink:#1F1E1C; --ink-soft:#4A473F;
-    --accent:#3F5C3E; --accent-soft:#EDF2EC; --warn:#8A3E2C; --warn-soft:#F8EEEB;
-    --line:#D3CCBD; --line-strong:#948B77; --line-soft:#E6E0D3;
+    color-scheme:light dark;
+    --paper:#FAF8F3; --sheet:#FFFFFF;
+    --ink:#1D1B16; --ink-mut:#4E4A42;
+    --green:#3D5A3C;        /* 文字・リンク・枠     7.26:1 on paper */
+    --green-mark:#5B7C5A;   /* 図形専用（文字に使わない） 4.42:1 on paper */
+    --green-soft:#EDF2EC;
+    --clay:#8F3A25; --clay-soft:#F8EEEB;
+    --rule:#DCD6C8;         /* 装飾の罫のみ。意味を持たせない */
+    --line-strong:#948B77;  /* 操作部品の輪郭。3:1 以上（a11y-audit 2026-08-17 の資産） */
+    --band-morning:#FDF2D6; --band-noon:#EAF2E6;
+    --band-evening:#E7ECF4; --band-night:#EDE7F2;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg:#171614; --card:#221F1C; --ink:#F2EEE5; --ink-soft:#C4BDB0;
-      --accent:#93BC91; --accent-soft:#232B22; --warn:#EC9A86; --warn-soft:#2C201C;
-      --line:#413C34; --line-strong:#7E7565; --line-soft:#332F29;
+      --paper:#16150F; --sheet:#201E17;
+      --ink:#EFEBE0; --ink-mut:#C3BCAC;
+      --green:#9CBE9A; --green-mark:#7FA37D; --green-soft:#232B22;
+      --clay:#E09A80; --clay-soft:#2C201C;
+      --rule:#3A3730; --line-strong:#7E7565;
+      --band-morning:#3A3218; --band-noon:#1F2A1C;
+      --band-evening:#1B2330; --band-night:#26202F;
     }
   }
   @media (prefers-reduced-motion: reduce){
     *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%;scroll-padding-top:24px}
   body{
-    background:var(--bg);color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:18px;line-height:1.9;
-    padding:0 18px 72px;-webkit-font-smoothing:antialiased;
-    overflow-wrap:break-word;
+    touch-action:manipulation;-webkit-tap-highlight-color:rgba(61,90,60,.18);
+    background:var(--paper);color:var(--ink);
+    font-family:"Hiragino Sans","ヒラギノ角ゴシック","Hiragino Kaku Gothic ProN",
+                "Yu Gothic","YuGothic","Noto Sans JP",-apple-system,sans-serif;
+    font-size:19px;line-height:1.9;
+    -webkit-font-smoothing:antialiased;overflow-wrap:break-word;
   }
-  .wrap{max-width:700px;margin:0 auto}
+  /* 見出しは丸ゴシック。端末に入っている書体を指名する（Webフォントは読み込まない） */
+  h1,h2,.band-name,.btn,.paper-name{
+    font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN W4","Hiragino Maru Gothic Pro",
+                "Yu Gothic Medium","YuGothic","Noto Sans JP",sans-serif;
+  }
+  /* 時刻と数字だけ欧文を指名（和文は本文の書体に落ちる） */
+  .num{font-family:"Avenir Next","Helvetica Neue","Hiragino Sans",sans-serif;
+       font-variant-numeric:tabular-nums;letter-spacing:.02em}
 
-  a{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+  a{color:var(--green);font-weight:700;
+    text-decoration:underline;text-decoration-color:currentColor;text-underline-offset:4px}
   a:hover{text-decoration-thickness:2px}
-  :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+  :focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:4px}
 
-  /* ---- 上の帯: サポートとプライバシーは、スクロールせずに見つかる位置に ---- */
-  .toplinks{display:grid;gap:10px;grid-template-columns:1fr 1fr;padding:14px 0 0}
-  .toplinks a{
-    display:flex;align-items:center;justify-content:center;text-align:center;
-    min-height:56px;padding:10px 8px;font-size:17px;font-weight:700;line-height:1.4;
-    background:var(--card);border:2px solid var(--line-strong);border-radius:12px;
-    text-decoration:underline;text-underline-offset:3px;
+  .col{max-width:620px;margin:0 auto;padding:0 16px}   /* 文字段。日本語30字を超えさせない */
+  .wide{max-width:960px;margin:0 auto;padding:0 16px}  /* 絵だけが広くなる */
+  .narrow{max-width:620px}                             /* .wide の中の文章 */
+
+  /* ---- ヘッダー: アプリ名が先。必須URLは小さい下線リンクで残す ---- */
+  .head{border-bottom:1px solid var(--rule)}
+  .head .col{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 20px}
+  .head-name{font-size:21px;font-weight:800;line-height:1.4;padding:10px 0;
+    font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN W4","Yu Gothic Medium",sans-serif}
+  .head-links{display:flex;gap:20px}
+  .head-links a{display:inline-flex;align-items:center;min-height:48px;font-size:19px}
+
+  /* ---- 節: 全幅の帯を縦に積む。1帯＝1メッセージ ---- */
+  section{padding:56px 0;border-top:1px solid var(--rule)}
+  section:first-of-type{border-top:0}
+  section.on-sheet{background:var(--sheet)}
+  h1{font-size:44px;text-wrap:balance;line-height:1.25;font-weight:800;letter-spacing:-.02em}
+  h2{font-size:30px;text-wrap:balance;line-height:1.45;font-weight:800;letter-spacing:-.01em;margin-bottom:20px}
+  p{margin-top:14px}
+  p:first-child{margin-top:0}
+  .mut{color:var(--ink-mut)}
+  @media (min-width:760px){
+    section{padding:72px 0}
+    h1{font-size:64px}
+    h2{font-size:38px}
+    .hero .lead{font-size:28px}
   }
-  @media (max-width:400px){ .toplinks{grid-template-columns:1fr} }
 
-  /* ---- 見出し ---- */
-  header{margin:26px 0 8px}
-  h1{font-size:38px;line-height:1.25;letter-spacing:-.5px;font-weight:800}
-  .lead{margin-top:14px;font-size:21px;line-height:1.75;font-weight:600}
-  .sub{margin-top:12px;font-size:18px;color:var(--ink-soft)}
-  .badge{display:inline-block;margin-top:18px;font-size:17px;font-weight:800;
-    color:var(--accent);background:var(--accent-soft);
-    border:2px solid var(--accent);border-radius:10px;padding:8px 14px;line-height:1.5}
-
-  h2{font-size:26px;line-height:1.5;font-weight:800;margin:52px 0 6px;letter-spacing:-.3px}
-  h2 + .note{margin-bottom:14px}
-  h3{font-size:20px;line-height:1.6;font-weight:800;margin-bottom:6px}
-  .note{color:var(--ink-soft);font-size:17px;margin-top:4px}
-
-  /* ---- 箱 ---- */
-  .card{background:var(--card);border:2px solid var(--line-soft);border-radius:16px;padding:20px}
-  .card + .card{margin-top:14px}
-  .card p + p, .card p + ul, .card ul + p{margin-top:12px}
-  .card ul{padding-left:1.3em}
-  .card li{margin-top:8px}
-  .card li::marker{color:var(--accent)}
-
-  .card.mark{border-color:var(--accent)}
-  .card.caution{border-color:var(--warn);background:var(--warn-soft)}
-  .card.caution h3{color:var(--warn)}
-
-  /* ---- はじめの3つ ---- */
-  .three{list-style:none;padding:0;margin-top:18px}
-  .three > li{
-    display:flex;gap:16px;align-items:flex-start;
-    background:var(--card);border:2px solid var(--line-soft);border-radius:16px;
-    padding:20px;margin-top:14px;
+  /* ---- ヒーロー ---- */
+  .hero-grid{max-width:620px}
+  .hero .lead{font-size:24px;line-height:1.6;margin-top:18px;font-weight:600}
+  .hero figcaption{text-align:center}
+  @media (min-width:760px){
+    .hero-grid{max-width:960px;display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center}
+    .hero .shot{max-width:340px;margin-top:0}
   }
-  .three .icon{flex:none;width:56px;height:56px;border-radius:14px;
-    background:var(--accent-soft);border:2px solid var(--accent);
-    display:flex;align-items:center;justify-content:center;color:var(--accent)}
-  .three .icon svg{width:30px;height:30px}
-  .three .num{font-size:17px;font-weight:800;color:var(--accent);display:block}
-  .three h3{font-size:22px;margin:2px 0 4px}
-  .three p{font-size:18px}
-
-  /* ---- 画面写真 ---- */
-  .shots{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:18px}
+  .shot{display:block;width:100%;max-width:300px;height:auto;margin:26px auto 0;
+    border:1px solid var(--line-strong);border-radius:22px;background:var(--sheet)}
   figure{margin:0}
-  figure img{display:block;width:100%;height:auto;border:2px solid var(--line);border-radius:14px;background:var(--card)}
-  figcaption{margin-top:10px;font-size:17px;color:var(--ink-soft);line-height:1.7}
-  figcaption b{color:var(--ink)}
+  figcaption{margin-top:12px;line-height:1.8}
 
-  .papers{margin-top:18px}
-  .papers figure + figure{margin-top:28px}
-  .papers figure img{border-radius:8px}
+  /* ---- ★シグネチャ: 朝・昼・夕・寝前の4つの帯 ---- */
+  .day{margin-top:4px;border:1px solid var(--line-strong);border-radius:14px;overflow:hidden}
+  .band{display:flex;align-items:center;gap:14px;min-height:88px;padding:0 18px;position:relative}
+  .band + .band{border-top:1px solid var(--line-strong)}
+  .band.b1{background:var(--band-morning)}
+  .band.b2{background:var(--band-noon)}
+  .band.b3{background:var(--band-evening)}
+  .band.b4{background:var(--band-night)}
+  .band-name{font-size:26px;font-weight:800;min-width:2.6em}
+  .band-time{font-size:26px;font-weight:600}
+  .thumb{margin-left:auto;flex:none;width:76px;height:76px;color:var(--green-mark)}
+  @media (min-width:760px){ .band{min-height:96px} .thumb{width:88px;height:88px} }
 
-  /* ---- 用途で分けた小見出し ---- */
-  .kv{display:grid;gap:6px 14px;margin-top:12px}
-  .kv div{font-size:18px}
-  .kv .k{font-weight:800}
-
-  /* ---- サポートの大きな箱 ---- */
-  .support{background:var(--card);border:3px solid var(--accent);border-radius:18px;padding:22px}
-  .support h2{margin-top:0}
-  .mailbtn{
-    display:flex;align-items:center;justify-content:center;text-align:center;
-    min-height:64px;margin-top:14px;padding:12px 14px;
-    font-size:20px;font-weight:800;line-height:1.4;word-break:break-all;
-    color:var(--accent);background:var(--accent-soft);
-    border:2px solid var(--accent);border-radius:12px;
-    text-decoration:underline;text-underline-offset:4px;
+  /* ---- 図: 手帳の記録 → 渡せる紙 ---- */
+  .flow{display:grid;gap:18px;justify-items:center;margin-top:4px}
+  .flow-shot{width:100%;max-width:280px;height:auto;
+    border:1px solid var(--line-strong);border-radius:20px;background:var(--sheet)}
+  .flow-arrow{width:40px;height:40px;color:var(--green-mark)}
+  .flow-sheet{width:100%;max-width:640px;height:auto;background:#FFFFFF;
+    border:1px solid var(--line-strong);border-radius:3px;padding:10px}
+  @media (min-width:760px){
+    .flow{grid-template-columns:280px 40px 1fr;align-items:center;gap:24px}
+    .flow-arrow{transform:none}
   }
-  .privacybtn{
-    display:flex;align-items:center;justify-content:center;text-align:center;
-    min-height:60px;margin-top:12px;padding:12px 14px;
-    font-size:19px;font-weight:800;
-    border:2px solid var(--line-strong);border-radius:12px;
-    text-decoration:underline;text-underline-offset:4px;
-  }
+  @media (max-width:759px){ .flow-arrow{transform:rotate(90deg)} }
 
-  footer{margin-top:56px;padding-top:12px;border-top:2px solid var(--line-soft);
-    text-align:center;color:var(--ink-soft);font-size:17px;line-height:2}
-  footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px;line-height:2}
+  .legend span{display:inline-flex;align-items:center;gap:8px}
+  .legend svg{flex:none;width:22px;height:22px;color:var(--green-mark)}
+
+  /* ---- 紙は3種類 ---- */
+  .papers{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:8px}
+  .papers svg{display:block;width:100%;max-width:150px;height:auto;color:var(--line-strong)}
+  .paper-name{font-weight:800;margin-top:10px}
+
+  /* ---- ご家族に見える5つ ---- */
+  .five{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:4px}
+  .five li{list-style:none;display:flex;align-items:center;gap:12px;
+    background:var(--sheet);border:1px solid var(--line-strong);border-radius:12px;padding:14px}
+  .five svg{flex:none;width:26px;height:26px;color:var(--green-mark)}
+  .on-sheet .five li{background:var(--paper)}
+
+  /* ---- だいじな注意 ---- */
+  .caution{border:2px solid var(--clay);background:var(--clay-soft);border-radius:16px;padding:22px}
+  .caution h2{color:var(--clay);display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+  .caution h2 svg{flex:none;width:36px;height:36px;margin-top:6px}
+
+  /* ---- 押すところ ---- */
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;
+    padding:14px 18px;border-radius:14px;font-size:21px;font-weight:800;line-height:1.4;
+    text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere;max-width:100%}
+  .btn + .btn{margin-top:14px}
+  p + .btn{margin-top:20px}
+  .btn-main{min-height:76px;color:#FFFFFF;background:var(--green);border:2px solid var(--green)}
+  .btn-sub{min-height:64px;color:var(--green);background:var(--green-soft);border:2px solid var(--green)}
+  .btn-plain{min-height:64px;color:var(--ink);background:var(--sheet);border:2px solid var(--line-strong)}
+  @media (prefers-color-scheme: dark){ .btn-main{color:#16150F} }
+  .btn svg{flex:none;width:24px;height:24px}
+
+  .skip{position:absolute;left:-9999px;top:0;z-index:9;
+    background:var(--green);color:#FFFFFF;padding:14px 18px;border-radius:0 0 12px 0;
+    font-weight:800;text-decoration:underline}
+  .skip:focus{left:0}
+  @media (prefers-color-scheme: dark){ .skip{color:#16150F} }
+
+  footer{border-top:1px solid var(--rule);padding:24px 0 48px;text-align:center;color:var(--ink-mut)}
+  footer a{display:inline-flex;align-items:center;min-height:48px;padding:0 4px}
+  section[id],h2[id],h3[id]{scroll-margin-top:24px}
 </style>
 <script type="application/ld+json">
 {
@@ -154,316 +205,206 @@
 </script>
 </head>
 <body>
-<div class="wrap">
+<a class="skip" href="#s0">本文へ進む</a>
 
-  <!-- App Store の必須URL。上にも下にも置く（高齢の利用者が探し回らないように） -->
-  <nav class="toplinks" aria-label="お問い合わせとプライバシー">
-    <a href="#support">お問い合わせ<br>（メール）</a>
-    <a href="privacy.html">プライバシー<br>ポリシー</a>
-  </nav>
-
-  <header>
-    <h1>のみきろく</h1>
-    <p class="lead">お薬を飲んだことを記録する、iPhone のアプリです。</p>
-    <p class="sub">朝・昼・夕・寝前の <strong>まとまりごとに、指で1回押すだけ</strong>。
-       同じ時間に5種類飲んでいても、押すのは1回で終わります。</p>
-    <p class="badge">広告なし・データ収集なし</p>
-  </header>
-
-  <h2>できることは、3つです</h2>
-
-  <ul class="three">
-    <li>
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-             stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6"/></svg>
-      </span>
-      <div>
-        <span class="num">1つめ</span>
-        <h3>飲んだら、指で1回</h3>
-        <p>大きな「飲んだ」のボタンを押すだけです。何時に押したかも一緒に残ります。</p>
-      </div>
-    </li>
-    <li>
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-             stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 5-2 6.5-2 6.5h16S18 14 18 9Z"/><path d="M10.3 20a2 2 0 0 0 3.4 0"/></svg>
-      </span>
-      <div>
-        <span class="num">2つめ</span>
-        <h3>時間になると、お知らせします</h3>
-        <p>お知らせに出る「飲んだ」を押せば、アプリを開かなくても記録できます。</p>
-      </div>
-    </li>
-    <li>
-      <span class="icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-             stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>
-      </span>
-      <div>
-        <span class="num">3つめ</span>
-        <h3>病院に持っていく紙が作れます</h3>
-        <p>いま飲んでいるお薬の一覧、財布に入るカード、1か月の記録。そのまま印刷できます。</p>
-      </div>
-    </li>
-  </ul>
-
-  <h2>画面を見てください</h2>
-  <p class="note">実際のアプリの画面です（見本のお薬を入れてあります）。</p>
-
-  <div class="shots">
-    <figure>
-      <img src="assets/today.png" alt="今日の画面。朝8時・昼12時・夕20時・寝前22時に分かれ、朝と昼には「飲んだ」と記録された時刻が出ている。夕のところに大きな緑色の「飲んだ」ボタンがある。"
-           width="560" height="1217" loading="lazy" decoding="async">
-      <figcaption><b>今日の画面。</b>時間ごとにまとまっていて、大きなボタンを1回押すだけです。</figcaption>
-    </figure>
-    <figure>
-      <img src="assets/techo.png" alt="手帳の画面。2026年8月の日ごとに、朝・昼・夕・寝前・頓服の列があり、飲んだ日は緑の丸、飲まなかった日は赤いバツで並んでいる。"
-           width="640" height="1391" loading="lazy" decoding="async">
-      <figcaption><b>手帳。</b>飲んだ日は丸、飲まなかった日はバツ。ひと月がひと目で分かります。</figcaption>
-    </figure>
-    <figure>
-      <img src="assets/large-text.png" alt="文字を大きくした手帳の画面。年月・曜日・記録の数がすべて大きな文字で表示されている。"
-           width="640" height="1391" loading="lazy" decoding="async">
-      <figcaption><b>文字は大きくできます。</b>アプリの中の［設定］→［文字の大きさ］で変えられます。
-        iPhone 本体の設定は触らなくて大丈夫です。</figcaption>
-    </figure>
+<!-- App Store の必須URL。最上部と最下部の両方から届く -->
+<div class="head">
+  <div class="col">
+    <span class="head-name">のみきろく</span>
+    <nav class="head-links" aria-label="サポートとプライバシー">
+      <a href="support.html">サポート</a>
+      <a href="privacy.html">プライバシー</a>
+    </nav>
   </div>
-
-  <h2>病院や入院のときに、渡せる紙</h2>
-  <p class="note">3種類の紙を作れます。プリンタがあれば［印刷する］でそのまま刷れます。
-     プリンタが無いときは、いったん保存して、コンビニのコピー機で印刷できます。</p>
-
-  <div class="papers">
-    <figure>
-      <img src="assets/paper-list.png" alt="持参薬リストの見本。A4の紙に、氏名・作成日・かかりつけと、薬の名前・規格・薬効分類・1回量・飲む時点・処方元・開始日の表が並んでいる。"
-           width="640" height="905" loading="lazy" decoding="async">
-      <figcaption><b>持参薬リスト（A4・1枚）。</b>入院・転院・介護施設で「いま何を飲んでいるか」を渡す1枚です。</figcaption>
-    </figure>
-    <figure>
-      <img src="assets/paper-card.png" alt="災害時のお薬カードの見本。名刺サイズのカードがA4に4面並び、それぞれに氏名・生年月日の記入欄・薬の名前と1日量・かかりつけ・緊急連絡先が入っている。"
-           width="640" height="905" loading="lazy" decoding="async">
-      <figcaption><b>災害時のお薬カード（名刺サイズ・4面）。</b>切り取って、お財布や診察券入れに入れておけます。</figcaption>
-    </figure>
-    <figure>
-      <img src="assets/paper-record.png" alt="服薬の記録の見本。A4の紙に、氏名と記号の説明があり、日ごとに朝・昼・夕・寝前・頓服・体調メモの列が並び、下に飲んだ回数の合計が入っている。"
-           width="640" height="905" loading="lazy" decoding="async">
-      <figcaption><b>服薬の記録（A4・1か月）。</b>受診のときにお医者さんへ渡す1枚です。
-        飲んだ回数・記録なし・飲まなかった回数を、実際の数だけで出します（％は出しません）。</figcaption>
-    </figure>
-  </div>
-
-  <h2>離れて暮らすご家族の方へ</h2>
-  <p class="note">親御さんの iPhone に入れて差し上げると、ご家族の iPhone から様子を見られます。
-     設定するのは1回だけです。</p>
-
-  <div class="card mark">
-    <h3>ご家族の画面に出るもの</h3>
-    <ul>
-      <li>今日の記録（朝・昼・夕・寝前のどれを飲んだか）</li>
-      <li>直近14日の記録</li>
-      <li>お薬の名前と、その分類</li>
-      <li>お薬の残りと、終わる見込みの日</li>
-      <li>次の受診の予定</li>
-      <li>体調メモ ―― <strong>ご本人が「共有する」を選んだときだけ</strong>出ます。選ばなければ、そもそも送られません</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>ご家族には、できないことがあります</h3>
-    <p>ご家族の画面からできるのは、<strong>代わりに記録を付けること</strong>だけです。
-       お薬を足したり消したり、飲む量を変えたりはできません。</p>
-    <p>ご家族が付けた記録には <strong>「家族が記録」と印が残ります</strong>。
-       お医者さんに渡す紙にも、その印が出ます。どちらが押したか分からなくなりません。</p>
-  </div>
-
-  <div class="card">
-    <h3>「飲んでいません」とは知らせません</h3>
-    <p>アプリがご家族に自動でお知らせするのは、<strong>記録が届いていないこと</strong>だけです。
-       3日以上、新しい記録が届かないときに、ご家族の画面でお知らせします。</p>
-    <p>「飲んでいない」と決めつけるお知らせは出しません。押し忘れただけのことも多く、
-       見張られている気持ちにさせないためです。</p>
-    <p class="note">ご家族の画面には「最終受信（最後に受け取った時刻）」を常に出しています。
-       止まっていることに気づけない作りにはしていません。</p>
-  </div>
-
-  <div class="card">
-    <h3>始め方と、やめ方</h3>
-    <p>ご本人の iPhone で ［設定］→［ご家族と共有する］を開き、
-       何が見えるようになるかをご確認いただいたうえで、LINE・メール・AirDrop で招待を送ります。
-       共有できるのは <strong>お一人まで</strong>です。</p>
-    <p>共有は <strong>いつでも1回押すだけでやめられます</strong>。
-       やめると、ご家族の画面からはすぐに見えなくなります。</p>
-    <p class="note">この共有は、あとに書く有料の機能に入っています。
-       iPhone の iCloud にサインインしている必要があります。</p>
-  </div>
-
-  <h2>だいじな注意</h2>
-
-  <div class="card caution">
-    <h3>このアプリは、お薬について何も判断しません</h3>
-    <p>記録とお知らせをするだけです。飲み合わせの確認も、飲み忘れたときの対処も示しません。
-       医療機器ではありません。</p>
-    <p><strong>飲む量・飲む回数・飲む時間は、お医者さんや薬剤師さんの指示に従ってください。</strong>
-       このアプリはその指示を書き写しておくための手帳です。</p>
-    <p>体調が悪いときは、アプリを見ずに医療機関へご連絡ください。
-       いつもと違うと感じたときは、かかりつけの医療機関にご相談ください。</p>
-    <p class="note">お薬の分類の名前は、厚生労働省の一覧に書かれている言葉をそのまま書き写しています。
-       「何のためのお薬か」をアプリが説明することはありません。</p>
-  </div>
-
-  <h2>お金のこと</h2>
-
-  <div class="card mark">
-    <h3>ずっと無料で使えるところ</h3>
-    <p><strong>お薬の時間のお知らせと、飲んだ記録は、これからもずっと無料です。</strong>
-       安全に関わるところにお金をいただく作りにはしていません。</p>
-    <ul>
-      <li>お薬の登録（種類の数に制限はありません）</li>
-      <li>飲んだ・飲まなかったの記録と、お知らせ</li>
-      <li>手帳（はじめてからの全部の期間を見返せます）</li>
-      <li>通院の予定と、体調メモ</li>
-      <li>広告が出ないこと</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>有料の「のみきろく Plus」でできること</h3>
-    <p>記録を <strong>外に持ち出すことと、先を見ること</strong>が有料です。</p>
-    <ul>
-      <li>お薬の残りと、終わる見込みの日</li>
-      <li>離れて暮らすご家族との共有</li>
-      <li>病院や入院のときに渡せる紙（3種類）</li>
-      <li>記録を表の形（CSV）で書き出すこと。Excel や Numbers でそのまま開けます</li>
-    </ul>
-    <p><strong>最初の30日は、全部の機能をお試しいただけます。</strong>
-       勝手に更新されることはありません。カードの登録も要りません。</p>
-    <p>30日を過ぎたあとのお支払いは、<strong>1回だけの「買い切り」</strong>と
-       <strong>1年ごと</strong>の2つから選べます。金額はアプリの中の購入画面に出ます。</p>
-    <p class="note">Apple の「ファミリー共有」に対応しています。
-       お子さんが買って、親御さんが使うことができます。</p>
-  </div>
-
-  <figure style="margin-top:22px;max-width:340px">
-    <img src="assets/medicines.png" alt="おくすりの画面。薬ごとに名前と分類が並び、「残り 10錠（あと5日分）」「お薬が終わる見込み: 8月22日（土）ごろ」と出ている。その横に「手元の残りを数えて入れる」のボタンがある。"
-         width="560" height="1217" loading="lazy" decoding="async">
-    <figcaption><b>お薬の残りと、終わる見込みの日。</b>受診の予約を取るのが間に合うように、
-      終わる日をあらかじめ出します（有料の機能です）。</figcaption>
-  </figure>
-
-  <h2>よくあるご質問</h2>
-
-  <div class="card">
-    <h3>お知らせが、途中で来なくなりませんか</h3>
-    <p>iPhone は1つのアプリにつき <strong>64件</strong>までしかお知らせを覚えていられません。
-       お薬1種類ごとにお知らせを用意する作りだと、種類が多い方は1週間ほどで枠が尽きて、
-       そこから先が黙って鳴らなくなります。</p>
-    <p>のみきろくは <strong>時点ごとに1件だけ</strong>用意し、毎日飲むお薬は「繰り返し」の
-       1件にまとめています。全体で48件を超えないようにして、残りは押し忘れたときの
-       追い打ち用に空けてあります。</p>
-    <p>そのうえで、<strong>いま何件用意できているかを［設定］の「通知の状態」に出しています。</strong>
-       止まっていることに気づけない作りにはしません。</p>
-    <p class="note">集中モード（おやすみモード）中でも、お薬の時間のお知らせは鳴るようにしています。</p>
-  </div>
-
-  <div class="card">
-    <h3>お知らせを押すだけで記録できますか</h3>
-    <p>できます。お知らせの［飲んだ］を押すと、アプリが開かないまま、
-       その時間のお薬すべてに記録が付きます。［あとで］を押すと、30分後にもう一度お知らせします。</p>
-    <p class="note">お知らせの文には、はじめの状態ではお薬の名前を出していません。
-       画面をつけたときに薬の名前が出ると、ご病気が周りの方に伝わってしまうためです。
-       ［設定］→「通知の中身」で、名前を出すように変えることもできます。</p>
-  </div>
-
-  <div class="card">
-    <h3>お薬の名前が見つかりません</h3>
-    <p>厚生労働省の一覧から <strong>12,400件</strong>のお薬の名前をアプリに入れてあります。
-       ひらがな・カタカナ・半角のどれで入力しても探せます。</p>
-    <p>それでも出てこないときは、<strong>［見つからないお薬を手で入れる］</strong>から
-       名前を打って登録できます。登録できないお薬はありません。</p>
-    <p class="note">お薬手帳の QR コード（四角い模様）の読み取りは、まだ入れていません。
-       実物の明細で確かめられるまでは出しません。読み違えると、飲む量が違って記録されてしまうためです。</p>
-  </div>
-
-  <div class="card">
-    <h3>夜中に飲んだお薬が、翌日の記録になってしまいます</h3>
-    <p>1日のはじまりを何時にするかを、<strong>［設定］→「1日の区切り」</strong>で
-       0時から6時まで選べます。はじめの状態は4時なので、深夜3時に飲んだ寝る前のお薬は、
-       前の日の記録になります。</p>
-  </div>
-
-  <div class="card">
-    <h3>お薬の残りの数が合いません</h3>
-    <p>記録していない分は差し引かれないので、実物とはだんだんずれていきます。
-       ずれて当たり前という前提の作りにしてあり、
-       <strong>［おくすり］の「手元の残りを数えて入れる」</strong>で、いつでも数え直せます。</p>
-    <p class="note">「飲んだ」と記録した分だけを引いています。記録のない分を「たぶん飲んだ」として
-       引くことはしません。あてずっぽうを混ぜると、お薬が終わる見込みの日が信用できなくなります。</p>
-  </div>
-
-  <div class="card">
-    <h3>買ったのに、有料の機能が使えません</h3>
-    <p>買ったときと同じ Apple ID でサインインした状態で、
-       <strong>［設定］→「購入したものを復元する」</strong>を押してください。
-       購入は Apple ID に結びついているので、iPhone を買い替えても引き継がれます。</p>
-  </div>
-
-  <div class="card">
-    <h3>iPhone を買い替えるときは</h3>
-    <p>記録はご自身の iCloud に保存されているので、新しい iPhone で同じ Apple ID に
-       サインインしてアプリを入れると、戻ってきます。</p>
-    <p class="note">戻るのは <strong>iCloud に入った分まで</strong>です。
-       iCloud にサインインしていない場合や、空きが足りない場合は、その iPhone の中だけに残ります。
-       いまどちらの状態かは、［設定］の「iCloudへの保存」に常に出しています。
-       念のため、大事な記録は表の形（CSV）で書き出して取っておくこともできます。</p>
-  </div>
-
-  <h2>あなたの記録は、どこにありますか</h2>
-
-  <div class="card mark">
-    <h3>作った人（開発者）は、あなたの記録を見られません</h3>
-    <p>このアプリには、広告も、利用のようすを集める仕組みも、開発者のサーバーもありません。
-       会員登録も要りません。お薬の名前・飲んだ記録・体調メモが、開発者や他の会社に渡ることは
-       一切ありません。</p>
-    <p>記録は <strong>この iPhone の中</strong>と、<strong>ご自身の iCloud</strong>（Apple のアカウント）に
-       入ります。iPhone を替えても記録が消えないためのもので、開発者が中身を見ることはできません。</p>
-    <p>ご家族との共有をオンにしたときだけ、共有した <strong>お一人</strong>に、
-       ご確認いただいた内容が見えるようになります。</p>
-    <p class="note">くわしくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
-  </div>
-
-  <div class="card">
-    <h3>お薬の情報の出どころ</h3>
-    <p>出典: 厚生労働省 薬価基準収載品目リスト（内用薬・注射薬・外用薬）。
-       本アプリが検索用に加工しています。</p>
-    <p class="note">この一覧はアプリの中に入っていて、名前を探すときに通信は起きません。</p>
-  </div>
-
-  <div class="support" id="support">
-    <h2>お困りのときは</h2>
-    <p>ご質問・うまく動かないとき・お薬の名前や表示の間違いのご指摘は、こちらへメールをください。</p>
-
-    <a class="mailbtn" href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a>
-
-    <p style="margin-top:16px">個人で作っています。いただいたメールは全部読みます。
-       お返事に1〜2日いただくことがあります。</p>
-
-    <div class="kv">
-      <div class="k">お知らせが鳴らなかったとき</div>
-      <div>お薬の名前・時間（朝／昼／夕／寝前）・鳴らなかった日を書いてお送りください。
-        ［設定］の「通知の状態」に出ている数字（予約されている数・最後に作り直した）も
-        一緒にいただけると、原因が絞れます。</div>
-    </div>
-
-    <a class="privacybtn" href="privacy.html">プライバシーポリシーを読む</a>
-  </div>
-
-  <footer>
-    © 2026 Nobutaka Kawasaki<br>
-    <a href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a> ·
-    <a href="privacy.html">プライバシーポリシー</a>
-  </footer>
-
 </div>
+
+<main>
+
+  <section class="hero" id="s0">
+    <div class="wide hero-grid">
+      <div>
+        <h1>のみきろく</h1>
+        <p class="lead">飲んだら、指で1回。<br>それだけの、お薬の記録です。</p>
+      </div>
+      <figure>
+        <img class="shot" src="assets/today.png" width="680" height="1478" fetchpriority="high" decoding="async"
+             alt="今日の画面。朝8時・昼12時・夕20時・寝前22時の帯に分かれ、朝と昼には「飲んだ 8:12に記録」と出ている。夕の下に大きな緑色の「飲んだ」ボタンがある。">
+        <figcaption class="mut">iPhone用。お知らせと記録は、ずっと無料。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ★シグネチャ: アプリと同じ4つの帯。色も既定の時刻も実物から採った -->
+  <section class="on-sheet" id="s1">
+    <div class="wide">
+      <h2>1日を、4つに分けています。</h2>
+      <div class="day">
+        <div class="band b1"><span class="band-name">朝</span><span class="band-time num">8:00</span></div>
+        <div class="band b2"><span class="band-name">昼</span><span class="band-time num">12:00</span></div>
+        <div class="band b3"><span class="band-name">夕</span><span class="band-time num">20:00</span>
+          <!-- 指で1回押す。このアプリで唯一の操作を、文字ではなく形で見せる -->
+          <svg class="thumb" viewBox="0 0 48 48" aria-hidden="true" fill="none"
+               stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 26V9.5a3.5 3.5 0 0 1 7 0V22"/>
+            <path d="M24 22v-2.5a3.5 3.5 0 0 1 7 0V23"/>
+            <path d="M31 23v-1.5a3.5 3.5 0 0 1 7 0V33c0 6.6-5.4 12-12 12h-3.6c-3.3 0-6.4-1.6-8.2-4.4L7 30.5a3.5 3.5 0 0 1 5.4-4.4L17 31"/>
+          </svg>
+        </div>
+        <div class="band b4"><span class="band-name">寝前</span><span class="band-time num">22:00</span></div>
+      </div>
+      <div class="narrow">
+        <p>時間になると、お知らせします。同じ時間のお薬は、何種類あっても指で1回。押した時刻も残ります。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 図: 画面の記録が、そのまま渡せる紙になる -->
+  <section id="s2">
+    <div class="wide">
+      <h2>1か月分が、1枚の紙になります。</h2>
+      <div class="flow">
+        <img class="flow-shot" src="assets/techo.png" width="680" height="1478" loading="lazy" decoding="async"
+             alt="手帳の画面。2026年8月の日ごとに、朝・昼・夕・寝前・頓服の列があり、飲んだ日は塗った丸、記録のない日は白い丸、飲まなかった日は赤いバツが並んでいる。">
+        <svg class="flow-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
+        </svg>
+        <img class="flow-sheet" src="assets/paper-record.png" width="1280" height="400" loading="lazy" decoding="async"
+             alt="服薬の記録の紙の見本。上に「服薬の記録 2026年8月」、氏名、記号の説明、日ごとに朝・昼・夕・寝前・頓服・体調メモの列があり、下に飲んだ回数の合計が出ている。">
+      </div>
+      <div class="legend" aria-label="記号の意味">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor"/></svg>飲んだ</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="8"/></svg>記録なし</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>飲まなかった</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>予定なし</span>
+      </div>
+      <div class="narrow">
+        <p>数えた回数だけを出します。割合は出しません。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="on-sheet" id="s3">
+    <div class="wide">
+      <h2>紙は、3種類あります。</h2>
+      <div class="papers">
+        <div>
+          <svg viewBox="0 0 100 141" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="1" width="98" height="139" rx="2"/>
+            <path d="M14 22h40" stroke-width="5"/>
+            <path d="M14 44h72M14 56h72M14 68h72M14 80h72M14 92h72" stroke-width="3"/>
+          </svg>
+          <p class="paper-name">持参薬リスト</p>
+          <p class="mut">A4・1枚</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 100 141" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="1" width="98" height="139" rx="2"/>
+            <rect x="10" y="14" width="37" height="50" rx="2" stroke-dasharray="4 4"/>
+            <rect x="53" y="14" width="37" height="50" rx="2" stroke-dasharray="4 4"/>
+            <rect x="10" y="72" width="37" height="50" rx="2" stroke-dasharray="4 4"/>
+            <rect x="53" y="72" width="37" height="50" rx="2" stroke-dasharray="4 4"/>
+          </svg>
+          <p class="paper-name">お薬カード</p>
+          <p class="mut">名刺の大きさ・4面</p>
+        </div>
+        <div>
+          <svg viewBox="0 0 100 141" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="1" y="1" width="98" height="139" rx="2"/>
+            <path d="M14 22h40" stroke-width="5"/>
+            <path d="M14 40h72" stroke-width="3"/>
+            <circle cx="24" cy="54" r="4" fill="currentColor" stroke="none"/>
+            <circle cx="44" cy="54" r="4" fill="currentColor" stroke="none"/>
+            <circle cx="64" cy="54" r="4" stroke-width="3"/>
+            <circle cx="24" cy="70" r="4" fill="currentColor" stroke="none"/>
+            <circle cx="44" cy="70" r="4" fill="currentColor" stroke="none"/>
+            <circle cx="64" cy="70" r="4" fill="currentColor" stroke="none"/>
+            <circle cx="24" cy="86" r="4" fill="currentColor" stroke="none"/>
+            <circle cx="44" cy="86" r="4" fill="currentColor" stroke="none"/>
+            <circle cx="64" cy="86" r="4" fill="currentColor" stroke="none"/>
+          </svg>
+          <p class="paper-name">服薬の記録</p>
+          <p class="mut">1か月分</p>
+        </div>
+      </div>
+      <div class="narrow">
+        <p>印刷しても、そのまま送ってもかまいません。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="s4">
+    <div class="wide">
+      <h2>離れて暮らすご家族に、今日の分が届きます。</h2>
+      <ul class="five">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6"/></svg>今日の記録</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>直近14日</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M12 8v8"/></svg>お薬</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>次の受診</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>最後に届いた時刻</li>
+      </ul>
+      <div class="narrow">
+        <p>ご家族は代わりに記録を付けるだけで、お薬は変えられません。</p>
+        <p>「飲んでいません」とは知らせません。3日以上届かないときだけ、お知らせします。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="on-sheet" id="s5">
+    <div class="col">
+      <h2>文字は、アプリの中で大きくできます。</h2>
+      <figure>
+        <img class="shot" src="assets/large-text.png" width="680" height="1478" loading="lazy" decoding="async"
+             alt="文字を大きくした手帳の画面。年月・曜日・記録の数が、すべて大きな文字で表示されている。">
+        <figcaption class="mut">iPhone本体の設定は、触りません。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="s6">
+    <div class="col">
+      <div class="caution">
+        <h2>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+               stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3 2 20h20L12 3Z"/><path d="M12 9v5"/><path d="M12 17.5v.01"/>
+          </svg>
+          お薬について、何も判断しません。
+        </h2>
+        <p>医療機器ではありません。飲む量・回数・時間は、お医者さんや薬剤師さんの指示に従ってください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="on-sheet" id="s7">
+    <div class="col">
+      <h2>お金のこと</h2>
+      <p>お知らせと記録は、ずっと無料です。紙・ご家族との共有・お薬の残りの計算は有料です。</p>
+      <p>最初の30日は、全部お試しいただけます。有料は買い切りと1年ごとの2つから選べます。</p>
+      <a class="btn btn-plain" href="support.html#okane">1年ごとの自動更新と、解約のしかた</a>
+    </div>
+  </section>
+
+  <section id="s8">
+    <div class="col">
+      <a class="btn btn-main" href="support.html">
+        くわしい説明と、よくあるご質問
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-sub" href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a>
+      <a class="btn btn-plain" href="privacy.html">プライバシーポリシー</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="col">
+    のみきろく ／ 川崎信孝<br>
+    <a href="support.html">サポート</a>・<a href="privacy.html">プライバシー</a>
+  </div>
+</footer>
+
 </body>
 </html>

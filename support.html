@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FAF8F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16150F" media="(prefers-color-scheme: dark)">
+<title>のみきろく のくわしい説明とよくあるご質問 — お知らせ・紙・ご家族との共有・お金のこと</title>
+<meta name="description" content="のみきろく（お薬の記録アプリ）のくわしい説明です。お知らせの仕組み、病院に持っていく3種類の紙、離れて暮らすご家族との共有、無料と有料の分かれ目、自動更新の解約のしかた、記録の置き場所、よくあるご質問。お問い合わせは nosunosukawa@gmail.com へ。">
+<link rel="canonical" href="https://nosunosukawa.github.io/nomikiroku-site/support.html">
+<style>
+  /* 意匠は index.html と同じトークン。文章が主役のページなので絵は置かない。 */
+  :root{
+    color-scheme:light dark;
+    --paper:#FAF8F3; --sheet:#FFFFFF;
+    --ink:#1D1B16; --ink-mut:#4E4A42;
+    --green:#3D5A3C; --green-mark:#5B7C5A; --green-soft:#EDF2EC;
+    --clay:#8F3A25; --clay-soft:#F8EEEB;
+    --rule:#DCD6C8; --line-strong:#948B77;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#16150F; --sheet:#201E17;
+      --ink:#EFEBE0; --ink-mut:#C3BCAC;
+      --green:#9CBE9A; --green-mark:#7FA37D; --green-soft:#232B22;
+      --clay:#E09A80; --clay-soft:#2C201C;
+      --rule:#3A3730; --line-strong:#7E7565;
+    }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%;scroll-padding-top:24px}
+  body{
+    touch-action:manipulation;-webkit-tap-highlight-color:rgba(61,90,60,.18);
+    background:var(--paper);color:var(--ink);
+    font-family:"Hiragino Sans","ヒラギノ角ゴシック","Hiragino Kaku Gothic ProN",
+                "Yu Gothic","YuGothic","Noto Sans JP",-apple-system,sans-serif;
+    font-size:19px;line-height:1.9;
+    -webkit-font-smoothing:antialiased;overflow-wrap:break-word;
+  }
+  h1,h2,h3,.btn,.head-name{
+    font-family:"Hiragino Maru Gothic ProN","ヒラギノ丸ゴ ProN W4","Hiragino Maru Gothic Pro",
+                "Yu Gothic Medium","YuGothic","Noto Sans JP",sans-serif;
+  }
+  a{color:var(--green);font-weight:700;
+    text-decoration:underline;text-decoration-color:currentColor;text-underline-offset:4px}
+  a:hover{text-decoration-thickness:2px}
+  :focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:4px}
+
+  .col{max-width:620px;margin:0 auto;padding:0 16px}
+
+  .head{border-bottom:1px solid var(--rule)}
+  .head .col{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 20px}
+  .head-name{font-size:21px;font-weight:800;line-height:1.4}
+  .head-name a{display:inline-flex;align-items:center;min-height:48px}
+  .head-links{display:flex;gap:20px}
+  .head-links a{display:inline-flex;align-items:center;min-height:48px;font-size:19px}
+
+  h1{font-size:30px;text-wrap:balance;line-height:1.45;font-weight:800;margin:40px 0 8px}
+  h2{font-size:26px;text-wrap:balance;line-height:1.5;font-weight:800;margin:44px 0 4px}
+  h3{font-size:21px;line-height:1.6;font-weight:800;margin:26px 0 0}
+  p{margin-top:12px}
+  .mut{color:var(--ink-mut)}
+  ul{margin-top:12px;padding-left:1.4em}
+  li{margin-top:8px}
+  li::marker{color:var(--green-mark)}
+  @media (min-width:760px){ h1{font-size:38px} h2{font-size:30px} h3{font-size:24px} }
+
+  .toc{background:var(--sheet);border:1px solid var(--line-strong);border-radius:14px;
+    padding:12px 18px;margin-top:20px}
+  .toc ul{padding-left:1.3em}
+  .toc li{margin-top:0}
+  /* 60〜80代の指で押せる高さを目次にも確保する */
+  .toc a{display:flex;align-items:center;min-height:48px}
+
+  .caution{border:2px solid var(--clay);background:var(--clay-soft);border-radius:16px;
+    padding:20px;margin-top:20px}
+  .caution h3{color:var(--clay);margin-top:0;font-size:24px}
+
+  .btn{display:flex;align-items:center;justify-content:center;text-align:center;
+    padding:14px 18px;border-radius:14px;font-size:21px;font-weight:800;line-height:1.4;
+    text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere;max-width:100%}
+  .btn + .btn{margin-top:14px}
+  .btn-sub{min-height:64px;color:var(--green);background:var(--green-soft);border:2px solid var(--green)}
+  .btn-plain{min-height:64px;color:var(--ink);background:var(--sheet);border:2px solid var(--line-strong)}
+
+  footer{margin-top:56px;border-top:1px solid var(--rule);padding:24px 0 48px;
+    text-align:center;color:var(--ink-mut)}
+  footer a{display:inline-flex;align-items:center;min-height:48px;padding:0 4px}
+  section[id],h2[id],h3[id]{scroll-margin-top:24px}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="col">
+    <span class="head-name"><a href="index.html">のみきろく</a></span>
+    <nav class="head-links" aria-label="ほかのページ">
+      <a href="index.html">最初のページ</a>
+      <a href="privacy.html">プライバシー</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+<div class="col">
+
+  <h1>くわしい説明と、よくあるご質問</h1>
+  <p class="mut">のみきろくは、お薬を飲んだことを記録する iPhone のアプリです。
+     このページには、最初のページに書ききれなかったことをまとめてあります。</p>
+
+  <div class="toc">
+    <ul>
+      <li><a href="#oshirase">お知らせと、飲んだ記録</a></li>
+      <li><a href="#kusuri">お薬の登録</a></li>
+      <li><a href="#kugiri">1日の区切りと、お薬の残り</a></li>
+      <li><a href="#kami">病院に持っていく紙と、表での書き出し</a></li>
+      <li><a href="#kazoku">離れて暮らすご家族との共有</a></li>
+      <li><a href="#chuui">だいじな注意</a></li>
+      <li><a href="#okane">お金のこと（自動更新と解約のしかた）</a></li>
+      <li><a href="#data">あなたの記録は、どこにありますか</a></li>
+      <li><a href="#faq">よくあるご質問</a></li>
+      <li><a href="#toiawase">お困りのときは</a></li>
+    </ul>
+  </div>
+
+  <h2 id="oshirase">お知らせと、飲んだ記録</h2>
+
+  <h3>飲んだら、指で1回</h3>
+  <p>1日を朝・昼・夕・寝前の4つに分けています。はじめの状態では
+     朝 8:00・昼 12:00・夕 20:00・寝前 22:00 です。時刻はあとから変えられます。</p>
+  <p>大きな「飲んだ」のボタンを押すだけで記録できます。同じ時間に5種類飲んでいても、
+     押すのは1回で終わります（一包化されたお薬に合わせています）。
+     何時に押したかも一緒に残ります。</p>
+
+  <h3>お知らせを押すだけで記録できます</h3>
+  <p>お知らせの［飲んだ］を押すと、アプリが開かないまま、その時間のお薬すべてに記録が付きます。
+     ［あとで］を押すと、30分後にもう一度お知らせします。</p>
+  <p>お知らせの文には、はじめの状態ではお薬の名前を出していません。
+     画面をつけたときに薬の名前が出ると、ご病気が周りの方に伝わってしまうためです。
+     ［設定］→「通知の中身」で、名前を出すように変えることもできます。</p>
+  <p>集中モード（おやすみモード）中でも、お薬の時間のお知らせは鳴るようにしています。</p>
+
+  <h3>お知らせが、途中で来なくなりませんか</h3>
+  <p>iPhone は1つのアプリにつき <strong>64件</strong>までしかお知らせを覚えていられません。
+     お薬1種類ごとにお知らせを用意する作りだと、種類が多い方は1週間ほどで枠が尽きて、
+     そこから先が黙って鳴らなくなります。</p>
+  <p>のみきろくは <strong>時点ごとに1件だけ</strong>用意し、毎日飲むお薬は「繰り返し」の
+     1件にまとめています。全体で48件を超えないようにして、残りは押し忘れたときの
+     追い打ち用に空けてあります。</p>
+  <p>そのうえで、<strong>いま何件用意できているかを［設定］の「通知の状態」に出しています。</strong>
+     止まっていることに気づけない作りにはしません。</p>
+
+  <h2 id="kusuri">お薬の登録</h2>
+  <p>厚生労働省の一覧から <strong>12,400件</strong>のお薬の名前をアプリに入れてあります。
+     ひらがな・カタカナ・半角のどれで入力しても探せます。
+     この一覧はアプリの中に入っていて、名前を探すときに通信は起きません。</p>
+  <p>それでも出てこないときは、<strong>［見つからないお薬を手で入れる］</strong>から
+     名前を打って登録できます。登録できないお薬はありません。
+     お薬の種類の数に制限はありません。</p>
+  <p>お薬手帳の QR コード（四角い模様）の読み取りは、まだ入れていません。
+     実物の明細で確かめられるまでは出しません。読み違えると、飲む量が違って記録されてしまうためです。</p>
+  <p class="mut">出典: 厚生労働省 薬価基準収載品目リスト（内用薬・注射薬・外用薬）。
+     本アプリが検索用に加工しています。</p>
+
+  <h2 id="kugiri">1日の区切りと、お薬の残り</h2>
+
+  <h3>夜中に飲んだお薬が、翌日の記録になってしまいます</h3>
+  <p>1日のはじまりを何時にするかを、<strong>［設定］→「1日の区切り」</strong>で
+     0時から6時まで選べます。はじめの状態は4時なので、深夜3時に飲んだ寝る前のお薬は、
+     前の日の記録になります。</p>
+
+  <h3>お薬の残りの数が合いません</h3>
+  <p>記録していない分は差し引かれないので、実物とはだんだんずれていきます。
+     ずれて当たり前という前提の作りにしてあり、
+     <strong>［おくすり］の「手元の残りを数えて入れる」</strong>で、いつでも数え直せます。</p>
+  <p>「飲んだ」と記録した分だけを引いています。記録のない分を「たぶん飲んだ」として
+     引くことはしません。あてずっぽうを混ぜると、お薬が終わる見込みの日が信用できなくなります。</p>
+  <p>残りの数から、お薬が終わる見込みの日を出します。受診の予約を取るのが間に合うように、
+     あらかじめお知らせするためのものです（有料の機能です）。</p>
+
+  <h2 id="kami">病院に持っていく紙と、表での書き出し</h2>
+  <p>3種類の紙を作れます。入口は［おくすり］の「紙に出す・表で出す」です。
+     プリンタがあれば［印刷する］でそのまま刷れます。
+     プリンタが無いときは、いったん保存して、コンビニのコピー機で印刷できます。</p>
+  <ul>
+    <li><strong>持参薬リスト（A4・1枚）</strong> ―― 入院・転院・介護施設で
+        「いま何を飲んでいるか」を渡す1枚です。</li>
+    <li><strong>災害時のお薬カード（名刺の大きさ・4面）</strong> ―― 切り取って、
+        お財布や診察券入れに入れておけます。</li>
+    <li><strong>服薬の記録（A4・1か月）</strong> ―― 受診のときにお医者さんへ渡す1枚です。
+        飲んだ回数・記録なし・飲まなかった回数を、実際の数だけで出します（％は出しません）。</li>
+  </ul>
+  <p>記録を表の形（CSV）で書き出すこともできます。Excel や Numbers でそのまま開けます。</p>
+
+  <h2 id="kazoku">離れて暮らすご家族との共有</h2>
+  <p>親御さんの iPhone に入れて差し上げると、ご家族の iPhone から様子を見られます。
+     設定するのは1回だけです。</p>
+
+  <h3>ご家族の画面に出るもの</h3>
+  <ul>
+    <li>今日の記録（朝・昼・夕・寝前のどれを飲んだか）</li>
+    <li>直近14日の記録</li>
+    <li>お薬の名前と、残りと、終わる見込みの日</li>
+    <li>次の受診の予定</li>
+    <li>最終受信（最後に受け取った時刻）</li>
+    <li>体調メモ ―― <strong>ご本人が「共有する」を選んだときだけ</strong>出ます。
+        選ばなければ、そもそも送られません</li>
+  </ul>
+
+  <h3>ご家族には、できないことがあります</h3>
+  <p>ご家族の画面からできるのは、<strong>代わりに記録を付けること</strong>だけです。
+     お薬を足したり消したり、飲む量を変えたりはできません。</p>
+  <p>ご家族が付けた記録には <strong>「家族が記録」と印が残ります</strong>。
+     お医者さんに渡す紙にも、その印が出ます。どちらが押したか分からなくなりません。</p>
+
+  <h3>「飲んでいません」とは知らせません</h3>
+  <p>アプリがご家族に自動でお知らせするのは、<strong>記録が届いていないこと</strong>だけです。
+     3日以上、新しい記録が届かないときに、ご家族の画面でお知らせします。</p>
+  <p>「飲んでいない」と決めつけるお知らせは出しません。押し忘れただけのことも多く、
+     見張られている気持ちにさせないためです。
+     ご家族の画面には「最終受信」を常に出しているので、
+     止まっていることに気づけない作りにはしていません。</p>
+
+  <h3>始め方と、やめ方</h3>
+  <p>ご本人の iPhone で ［設定］→［ご家族と共有する］を開き、
+     何が見えるようになるかをご確認いただいたうえで、LINE・メール・AirDrop で招待を送ります。
+     共有できるのは <strong>お一人まで</strong>です。</p>
+  <p>共有は <strong>いつでも1回押すだけでやめられます</strong>。
+     やめると、ご家族の画面からはすぐに見えなくなります。</p>
+  <p class="mut">この共有は有料の機能に入っています。
+     iPhone の iCloud にサインインしている必要があります。</p>
+
+  <h2 id="chuui">だいじな注意</h2>
+
+  <div class="caution">
+    <h3>このアプリは、お薬について何も判断しません</h3>
+    <p>記録とお知らせをするだけです。飲み合わせの確認も、飲み忘れたときの対処も示しません。
+       医療機器ではありません。</p>
+    <p><strong>飲む量・飲む回数・飲む時間は、お医者さんや薬剤師さんの指示に従ってください。</strong>
+       このアプリはその指示を書き写しておくための手帳です。</p>
+    <p>体調が悪いときは、アプリを見ずに医療機関へご連絡ください。
+       いつもと違うと感じたときは、かかりつけの医療機関にご相談ください。</p>
+    <p>「何のためのお薬か」をアプリが説明することはありません。</p>
+  </div>
+
+  <h2 id="okane">お金のこと</h2>
+
+  <h3>ずっと無料で使えるところ</h3>
+  <p><strong>お薬の時間のお知らせと、飲んだ記録は、これからもずっと無料です。</strong>
+     安全に関わるところにお金をいただく作りにはしていません。</p>
+  <ul>
+    <li>お薬の登録（種類の数に制限はありません）</li>
+    <li>飲んだ・飲まなかったの記録と、お知らせ</li>
+    <li>手帳（はじめてからの全部の期間を見返せます）</li>
+    <li>通院の予定と、体調メモ</li>
+    <li>広告が出ないこと</li>
+  </ul>
+
+  <h3>有料の「のみきろく Plus」でできること</h3>
+  <p>記録を <strong>外に持ち出すことと、先を見ること</strong>が有料です。</p>
+  <ul>
+    <li>お薬の残りと、終わる見込みの日</li>
+    <li>離れて暮らすご家族との共有</li>
+    <li>病院や入院のときに渡せる紙（3種類）</li>
+    <li>記録を表の形（CSV）で書き出すこと</li>
+  </ul>
+  <p><strong>最初の30日は、全部の機能をお試しいただけます。</strong>
+     勝手に更新されることはありません。カードの登録も要りません。</p>
+
+  <h3>お支払いは2つから選べます</h3>
+  <ul>
+    <li><strong>買い切り</strong> ―― 1回だけのお支払いです。更新はありません。</li>
+    <li><strong>1年ごと（自動更新）</strong> ―― 期間は1年です。
+        <strong>解約しないかぎり、1年ごとに自動で更新され、同じ金額が引き落とされます。</strong></li>
+  </ul>
+  <p>金額はアプリの中の購入画面に出ます。お支払いは Apple ID に請求されます。</p>
+
+  <h3>1年ごとのお支払いをやめるとき（解約のしかた）</h3>
+  <p>解約は、<strong>iPhone の［設定］→ いちばん上のご自身のお名前 →［サブスクリプション］</strong>から
+     いつでもできます。そこで「のみきろく」を選び、［サブスクリプションをキャンセルする］を押してください。</p>
+  <p>更新される日の <strong>24時間前まで</strong>に解約すると、次の1年分の料金はかかりません。
+     解約しても、すでにお支払いいただいた期間が終わるまでは、有料の機能をお使いいただけます。</p>
+  <p>アプリを消しただけでは解約になりません。かならず上の［サブスクリプション］からお手続きください。</p>
+  <p class="mut">Apple の「ファミリー共有」に対応しています。
+     お子さんが買って、親御さんが使うことができます。</p>
+
+  <h3>買ったのに、有料の機能が使えません</h3>
+  <p>買ったときと同じ Apple ID でサインインした状態で、
+     <strong>［設定］→「購入したものを復元する」</strong>を押してください。
+     購入は Apple ID に結びついているので、iPhone を買い替えても引き継がれます。</p>
+
+  <h2 id="data">あなたの記録は、どこにありますか</h2>
+
+  <h3>作った人（開発者）は、あなたの記録を見られません</h3>
+  <p>このアプリには、広告も、利用のようすを集める仕組みも、開発者のサーバーもありません。
+     会員登録も要りません。お薬の名前・飲んだ記録・体調メモが、開発者や他の会社に渡ることは
+     一切ありません。</p>
+  <p>記録は <strong>この iPhone の中</strong>と、<strong>ご自身の iCloud</strong>（Apple のアカウント）に
+     入ります。iPhone を替えても記録が消えないためのもので、開発者が中身を見ることはできません。</p>
+  <p>ご家族との共有をオンにしたときだけ、共有した <strong>お一人</strong>に、
+     ご確認いただいた内容が見えるようになります。</p>
+  <p class="mut">くわしくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+
+  <h3>iPhone を買い替えるときは</h3>
+  <p>記録はご自身の iCloud に保存されているので、新しい iPhone で同じ Apple ID に
+     サインインしてアプリを入れると、戻ってきます。</p>
+  <p>戻るのは <strong>iCloud に入った分まで</strong>です。
+     iCloud にサインインしていない場合や、空きが足りない場合は、その iPhone の中だけに残ります。
+     いまどちらの状態かは、［設定］の「iCloudへの保存」に常に出しています。
+     念のため、大事な記録は表の形（CSV）で書き出して取っておくこともできます。</p>
+
+  <h2 id="faq">よくあるご質問</h2>
+
+  <h3>文字が小さくて読めません</h3>
+  <p>アプリの中の ［設定］→［文字の大きさ］で変えられます。
+     iPhone 本体の設定は触らなくて大丈夫です。</p>
+
+  <h3>同じ時間に何種類も飲んでいます。全部押すのですか</h3>
+  <p>いいえ。同じ時間のお薬はまとめて1回です。1種類ずつ分けて記録したいときは
+     ［1つずつ］を押してください。</p>
+
+  <h3>飲まなかったときは、どう記録しますか</h3>
+  <p>［飲まなかった］を押してください。手帳と紙に、飲んだ回数とは別に数えて出ます。</p>
+
+  <h3>頓服（とんぷく）のお薬も記録できますか</h3>
+  <p>できます。時間を決めずに、飲んだときに［飲んだことを記録する］を押してください。
+     手帳と紙には、その日の頓服の回数が出ます。</p>
+
+  <h3>Android では使えますか</h3>
+  <p>いまは iPhone だけです。</p>
+
+  <h2 id="toiawase">お困りのときは</h2>
+  <p>ご質問・うまく動かないとき・お薬の名前や表示の間違いのご指摘は、こちらへメールをください。
+     個人で作っています。いただいたメールは全部読みます。お返事に1〜2日いただくことがあります。</p>
+
+  <a class="btn btn-sub" href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a>
+
+  <h3>お知らせが鳴らなかったときにお知らせいただきたいこと</h3>
+  <p>お薬の名前・時間（朝／昼／夕／寝前）・鳴らなかった日を書いてお送りください。
+     ［設定］の「通知の状態」に出ている数字（予約されている数・最後に作り直した）も
+     一緒にいただけると、原因が絞れます。</p>
+
+  <a class="btn btn-plain" href="privacy.html">プライバシーポリシーを読む</a>
+
+</div>
+</main>
+
+<footer>
+  <div class="col">
+    のみきろく ／ 川崎信孝<br>
+    <a href="index.html">最初のページ</a>・<a href="privacy.html">プライバシー</a>
+  </div>
+</footer>
+
+</body>
+</html>
