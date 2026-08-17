@@ -11,16 +11,16 @@
      法的な本文そのものは変えていない（見た目だけを index.html に合わせた） */
   :root{
     --bg:#FAF8F3; --card:#FFFFFF; --ink:#1F1E1C; --ink-soft:#4A473F;
-    --accent:#3F5C3E; --accent-soft:#EDF2EC; --line:#D3CCBD; --line-soft:#E6E0D3;
+    --accent:#3F5C3E; --accent-soft:#EDF2EC; --line:#D3CCBD; --line-strong:#948B77; --line-soft:#E6E0D3;
   }
   @media (prefers-color-scheme: dark){
     :root{
       --bg:#171614; --card:#221F1C; --ink:#F2EEE5; --ink-soft:#C4BDB0;
-      --accent:#93BC91; --accent-soft:#232B22; --line:#413C34; --line-soft:#332F29;
+      --accent:#93BC91; --accent-soft:#232B22; --line:#413C34; --line-strong:#7E7565; --line-soft:#332F29;
     }
   }
   @media (prefers-reduced-motion: reduce){
-    *{animation:none !important;transition:none !important}
+    *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
@@ -37,7 +37,7 @@
   .toplinks{display:grid;gap:10px;grid-template-columns:1fr 1fr;padding:14px 0 0}
   .toplinks a{display:flex;align-items:center;justify-content:center;text-align:center;
     min-height:56px;padding:10px 8px;font-size:17px;font-weight:700;line-height:1.4;
-    background:var(--card);border:2px solid var(--line);border-radius:12px}
+    background:var(--card);border:2px solid var(--line-strong);border-radius:12px}
   @media (max-width:400px){ .toplinks{grid-template-columns:1fr} }
 
   header{margin:26px 0 22px}
@@ -56,8 +56,9 @@
     min-height:60px;margin-top:12px;padding:12px 14px;font-size:19px;font-weight:800;
     word-break:break-all;color:var(--accent);background:var(--accent-soft);
     border:2px solid var(--accent);border-radius:12px;text-underline-offset:4px}
-  footer{margin-top:56px;padding-top:20px;border-top:2px solid var(--line-soft);
+  footer{margin-top:56px;padding-top:12px;border-top:2px solid var(--line-soft);
     text-align:center;color:var(--ink-soft);font-size:17px;line-height:2}
+  footer a{display:inline-flex;align-items:center;min-height:44px;padding:0 2px}
 </style>
 <link rel="canonical" href="https://nosunosukawa.github.io/nomikiroku-site/privacy.html">
 </head>
