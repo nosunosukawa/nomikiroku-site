@@ -152,8 +152,10 @@
   .legend svg{flex:none;width:22px;height:22px;color:var(--green-mark)}
 
   /* ---- 紙は3種類 ---- */
-  .papers{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:8px}
-  .papers svg{display:block;width:100%;max-width:150px;height:auto;color:var(--line-strong)}
+  .papers{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:8px}
+  /* 実物の紙。白地なので、生成りの背景と見分けるために枠を付ける */
+  .papers img{display:block;width:100%;height:auto;background:#FFFFFF;
+    border:1px solid var(--line-strong);border-radius:3px}
   .paper-name{font-weight:800;margin-top:10px}
 
   /* ---- ご家族に見える5つ ---- */
@@ -264,19 +266,22 @@
       <h2>1か月分が、1枚の紙になります。</h2>
       <div class="flow">
         <img class="flow-shot" src="assets/techo.png" width="680" height="1478" loading="lazy" decoding="async"
-             alt="手帳の画面。2026年8月の日ごとに、朝・昼・夕・寝前・頓服の列があり、飲んだ日は塗った丸、記録のない日は白い丸、飲まなかった日は赤いバツが並んでいる。">
+             alt="手帳の画面。2026年8月の日ごとに、朝・昼・夕・寝前・頓服の列があり、飲んだところは塗った丸、まだ時間が来ていないところは白い丸、記録のないところは横棒、飲まなかったところは赤いバツが並んでいる。">
         <svg class="flow-arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none"
              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
         </svg>
-        <img class="flow-sheet" src="assets/paper-record.png" width="1280" height="400" loading="lazy" decoding="async"
-             alt="服薬の記録の紙の見本。上に「服薬の記録 2026年8月」、氏名、記号の説明、日ごとに朝・昼・夕・寝前・頓服・体調メモの列があり、下に飲んだ回数の合計が出ている。">
+        <img class="flow-sheet" src="assets/paper-record.png" width="1280" height="800" loading="lazy" decoding="async"
+             alt="服薬の記録の紙の見本。上に「服薬の記録 2026年8月」、氏名、記号の説明があり、日ごとに朝・昼・夕・寝前・頓服・体調メモの列が10日分並び、いちばん下に「飲んだ 45回 / 記録なし 2回 / 飲まなかった 1回」と出ている。">
       </div>
+      <!-- 記号の意味は、アプリの画面と紙（凡例）と同じにすること。
+           ○ は「まだ時間が来ていない」、― が「記録なし」。ここを入れ替えて書くと、
+           受診時に医師が読む紙と食い違う（2026-08-18 に紙側のずれを直した） -->
       <div class="legend" aria-label="記号の意味">
         <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="currentColor"/></svg>飲んだ</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="8"/></svg>記録なし</span>
         <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>飲まなかった</span>
-        <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>予定なし</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/></svg>記録なし</span>
+        <span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="8"/></svg>これから</span>
       </div>
       <div class="narrow">
         <p>数えた回数だけを出します。割合は出しません。</p>
@@ -287,42 +292,24 @@
   <section class="on-sheet" id="s3">
     <div class="wide">
       <h2>紙は、3種類あります。</h2>
+      <!-- 3枚ともアプリが実際に書き出した紙。輪郭の絵ではない。
+           作り直しは mobile/nomikiroku の `bash scripts/make-pdf-samples.sh` -->
       <div class="papers">
         <div>
-          <svg viewBox="0 0 100 141" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="1" y="1" width="98" height="139" rx="2"/>
-            <path d="M14 22h40" stroke-width="5"/>
-            <path d="M14 44h72M14 56h72M14 68h72M14 80h72M14 92h72" stroke-width="3"/>
-          </svg>
+          <img src="assets/paper-list.png" width="1280" height="800" loading="lazy" decoding="async"
+               alt="持参薬リストの紙の見本。氏名・作成日・かかりつけの下に、薬の名前／規格／1回量／飲む時点／処方元／開始日の表があり、3種類の薬が並んでいる。">
           <p class="paper-name">持参薬リスト</p>
           <p class="mut">A4・1枚</p>
         </div>
         <div>
-          <svg viewBox="0 0 100 141" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="1" y="1" width="98" height="139" rx="2"/>
-            <rect x="10" y="14" width="37" height="50" rx="2" stroke-dasharray="4 4"/>
-            <rect x="53" y="14" width="37" height="50" rx="2" stroke-dasharray="4 4"/>
-            <rect x="10" y="72" width="37" height="50" rx="2" stroke-dasharray="4 4"/>
-            <rect x="53" y="72" width="37" height="50" rx="2" stroke-dasharray="4 4"/>
-          </svg>
+          <img src="assets/paper-card.png" width="1280" height="800" loading="lazy" decoding="async"
+               alt="お薬カードの紙の見本。切り取り線で囲まれた名刺の大きさの中に、氏名、手書きの生年月日欄、薬の名前と1日に飲む量が3つ、かかりつけと緊急連絡先の記入欄がある。">
           <p class="paper-name">お薬カード</p>
           <p class="mut">名刺の大きさ・4面</p>
         </div>
         <div>
-          <svg viewBox="0 0 100 141" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="1" y="1" width="98" height="139" rx="2"/>
-            <path d="M14 22h40" stroke-width="5"/>
-            <path d="M14 40h72" stroke-width="3"/>
-            <circle cx="24" cy="54" r="4" fill="currentColor" stroke="none"/>
-            <circle cx="44" cy="54" r="4" fill="currentColor" stroke="none"/>
-            <circle cx="64" cy="54" r="4" stroke-width="3"/>
-            <circle cx="24" cy="70" r="4" fill="currentColor" stroke="none"/>
-            <circle cx="44" cy="70" r="4" fill="currentColor" stroke="none"/>
-            <circle cx="64" cy="70" r="4" fill="currentColor" stroke="none"/>
-            <circle cx="24" cy="86" r="4" fill="currentColor" stroke="none"/>
-            <circle cx="44" cy="86" r="4" fill="currentColor" stroke="none"/>
-            <circle cx="64" cy="86" r="4" fill="currentColor" stroke="none"/>
-          </svg>
+          <img src="assets/paper-record.png" width="1280" height="800" loading="lazy" decoding="async"
+               alt="服薬の記録の紙の見本。日ごとに朝・昼・夕・寝前・頓服・体調メモの列が10日分並び、いちばん下に飲んだ回数の合計が出ている。">
           <p class="paper-name">服薬の記録</p>
           <p class="mut">1か月分</p>
         </div>
