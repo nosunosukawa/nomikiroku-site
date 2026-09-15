@@ -6,16 +6,16 @@
 <meta name="theme-color" content="#FAF8F3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16150F" media="(prefers-color-scheme: dark)">
 <!-- <title> を「Support」にしない。AI の引用面にも検索にも載らなくなる（他アプリで実測） -->
-<title>母さん今日の薬まだかな？ — 飲んだら指で1回。お薬の記録と、飲み忘れのお知らせ（iPhoneアプリ）</title>
-<meta name="description" content="母さん今日の薬まだかな？は、お薬を飲んだことを記録するiPhoneのアプリです。朝・昼・夕・寝前のまとまりごとに指で1回押すだけ。時間になるとお知らせします。病院や入院に持っていく紙も作れます。広告なし・データ収集なし。お問い合わせとプライバシーポリシーはこのページから。">
-<meta property="og:title" content="母さん今日の薬まだかな？ — 飲んだら指で1回。お薬の記録アプリ">
-<meta property="og:description" content="朝・昼・夕・寝前のまとまりごとに指で1回。時間になるとお知らせします。病院に持っていく紙も作れます。広告なし・データ収集なし。">
+<title>家族健康手帳 — お薬と血圧の記録。薬は家族で見守り（iPhoneアプリ）</title>
+<meta name="description" content="家族健康手帳は、お薬と血圧を記録するiPhoneのアプリです。1台にご本人お一人分の記録。ご家族が見られるのはお薬を飲んだ記録だけで、血圧は端末の中だけに保存され、ご本人が「送る」を押したときだけ届きます。広告なし。お問い合わせとプライバシーポリシーはこのページから。">
+<meta property="og:title" content="家族健康手帳 — お薬と血圧の記録アプリ">
+<meta property="og:description" content="お薬は時点ごとに指で1回、血圧はテンキーで記録。ご家族が見られるのはお薬の記録だけ。血圧はご本人が送ったときだけ届きます。">
 <meta property="og:url" content="https://nosunosukawa.github.io/nomikiroku-site/">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://nosunosukawa.github.io/nomikiroku-site/">
 <style>
   /* ============================================================
-     母さん今日の薬まだかな？ LP（第2波・骨から作り直し）
+     家族健康手帳 LP（第2波の骨に、2026-09-15 改名と血圧の統合を反映）
 
      方針: 「見て分かる面」。文章は絵のキャプションの長さに収める。
      ただし文字を減らすために字は小さくしない ―― 最小 19px（第1波は17px）。
@@ -196,12 +196,12 @@
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  "name": "母さん今日の薬まだかな？",
+  "name": "家族健康手帳",
   "applicationCategory": "HealthApplication",
   "operatingSystem": "iOS",
   "inLanguage": "ja",
   "url": "https://nosunosukawa.github.io/nomikiroku-site/",
-  "description": "お薬を飲んだことを記録するiPhoneのアプリ。朝・昼・夕・寝前のまとまりごとに指で1回押すだけで記録でき、時間になるとお知らせします。病院や入院に持っていく紙も作れます。",
+  "description": "お薬と血圧を記録するiPhoneのアプリ。1台にご本人お一人分の記録。ご家族が見られるのはお薬を飲んだ記録だけで、血圧は端末の中だけに保存され、ご本人が送ったときだけ届きます。",
   "author": { "@type": "Person", "name": "Nobutaka Kawasaki" }
 }
 </script>
@@ -213,7 +213,7 @@
 <!-- App Store の必須URL。最上部と最下部の両方から届く -->
 <div class="head">
   <div class="col">
-    <span class="head-name">母さん今日の薬まだかな？</span>
+    <span class="head-name">家族健康手帳</span>
     <nav class="head-links" aria-label="サポートとプライバシー">
       <a href="support.html">サポート</a>
       <a href="privacy.html">プライバシー</a>
@@ -226,13 +226,15 @@
   <section class="hero" id="s0">
     <div class="wide hero-grid">
       <div>
-        <h1>母さん今日の薬まだかな？</h1>
-        <p class="lead">飲んだら、指で1回。<br>それだけの、お薬の記録です。</p>
+        <h1>家族健康手帳</h1>
+        <p class="lead">この端末には、ご本人お一人分の記録だけを残します。<br>
+          ご家族が見られるのは、お薬を飲んだ記録だけです。<br>
+          血圧は端末の中だけに保存され、ご本人が「送る」を押したときだけご家族に届きます。</p>
       </div>
       <figure>
         <img class="shot" src="assets/today.png" width="680" height="1478" fetchpriority="high" decoding="async"
              alt="今日の画面。朝8時・昼12時・夕20時・寝前22時の帯に分かれ、朝と昼には「飲んだ 8:12に記録」と出ている。夕の下に大きな緑色の「飲んだ」ボタンがある。">
-        <figcaption class="mut">iPhone用。お知らせと記録は、ずっと無料。</figcaption>
+        <figcaption class="mut">iPhone用。お薬は、時点ごとに指で1回。</figcaption>
       </figure>
     </div>
   </section>
@@ -292,7 +294,7 @@
 
   <section class="on-sheet" id="s3">
     <div class="wide">
-      <h2>紙は、3種類あります。</h2>
+      <h2>お薬の紙は、3種類あります。</h2>
       <!-- 3枚ともアプリが実際に書き出した紙。輪郭の絵ではない。
            作り直しは mobile/nomikiroku の `bash scripts/make-pdf-samples.sh` -->
       <div class="papers">
@@ -323,18 +325,32 @@
 
   <section id="s4">
     <div class="wide">
-      <h2>離れて暮らすご家族に、今日の分が届きます。</h2>
+      <h2>お薬の記録は、離れて暮らすご家族も見られます。</h2>
       <ul class="five">
-        <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6"/></svg>今日の記録</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6"/></svg>今日の飲んだ記録</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>直近14日</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="8" width="19" height="8" rx="4"/><path d="M12 8v8"/></svg>お薬</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>次の受診</li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>最後に届いた時刻</li>
       </ul>
       <div class="narrow">
-        <p>ご家族は代わりに記録を付けるだけで、お薬は変えられません。</p>
-        <p>「飲んでいません」とは知らせません。3日以上届かないときだけ、お知らせします。</p>
+        <p>ご家族に見えるのは、お薬の記録だけです。<strong>血圧と体調メモは含まれません。</strong></p>
+        <p>ご本人が同意したときだけ始まり、いつでも1回の操作でやめられます。ご家族は代わりに記録を付けるだけで、お薬は変えられません。</p>
+        <a class="btn btn-plain" href="support.html#kazoku">見守りの仕組みと、やめ方</a>
       </div>
+    </div>
+  </section>
+
+  <!-- 血圧（2026-09-14 統合）。家族の端末に血圧が見える絵は置かない（name-legal §4-3） -->
+  <section class="on-sheet" id="bp">
+    <div class="col">
+      <h2>血圧は、ご自身のための記録です。</h2>
+      <p>今日の画面の血圧のカードから、テンキーで上・下・脈拍を入れます。
+         数値は、この端末の中だけに保存されます。</p>
+      <p>ご家族に伝えたいときは、ご本人が送る中身を確かめて「送る」を押したときだけ、値と日時が届きます。
+         自動で送ることはありません。</p>
+      <p>ヘルスケアとの連携は、設定でオンにしたときだけ。読み取った値は、このアプリの中に保存しません。</p>
+      <a class="btn btn-plain" href="support.html#ketsuatsu">血圧の記録について、くわしく</a>
     </div>
   </section>
 
@@ -357,9 +373,10 @@
                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3 2 20h20L12 3Z"/><path d="M12 9v5"/><path d="M12 17.5v.01"/>
           </svg>
-          お薬について、何も判断しません。
+          医療機器ではありません。
         </h2>
-        <p>医療機器ではありません。飲む量・回数・時間は、お医者さんや薬剤師さんの指示に従ってください。</p>
+        <p>診断・治療・予防を目的とせず、お薬や血圧について判断しません。飲む量・回数・時間は、お医者さんや薬剤師さんの指示に従ってください。</p>
+        <p>このアプリは、市区町村が交付する健康手帳・母子健康手帳・お薬手帳ではなく、これらと連携していません。</p>
       </div>
     </div>
   </section>
@@ -367,8 +384,8 @@
   <section class="on-sheet" id="s7">
     <div class="col">
       <h2>お金のこと</h2>
-      <p>お知らせと記録は、ずっと無料です。紙・ご家族との共有・お薬の残りの計算は有料です。</p>
-      <p>最初の30日は、全部お試しいただけます。有料は買い切りと1年ごとの2つから選べます。</p>
+      <p>紙と表の書き出し・血圧のグラフ・ご家族の見守り・血圧を送る機能・お薬の残りからの受診日の見込みは、有料の「家族健康手帳プラス」の機能です。</p>
+      <p>最初の30日は、全部お試しいただけます。プラスは買い切りと1年ごとの2つから選べます。</p>
       <a class="btn btn-plain" href="support.html#okane">1年ごとの自動更新と、解約のしかた</a>
     </div>
   </section>
@@ -389,7 +406,7 @@
 
 <footer>
   <div class="col">
-    母さん今日の薬まだかな？ ／ 川﨑信隆<br>
+    家族健康手帳 ／ 川﨑信隆<br>
     <a href="support.html">サポート</a>・<a href="privacy.html">プライバシー</a>
   </div>
 </footer>

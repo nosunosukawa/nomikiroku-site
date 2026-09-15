@@ -5,15 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#FAF8F3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16150F" media="(prefers-color-scheme: dark)">
-<title>母さん今日の薬まだかな？ — プライバシーポリシー（開発者はあなたの記録を見られません）</title>
-<meta name="description" content="母さん今日の薬まだかな？は何も集めません。会員登録なし、利用のようすを集める仕組みなし、広告なし、開発者のサーバーなし。記録はご自身のiCloudにだけ保存されます。ご家族との共有ははじめの状態ではオフで、いつでも1回押すだけでやめられます。">
+<title>家族健康手帳 — プライバシーポリシー（開発者はあなたの記録を受け取りません）</title>
+<meta name="description" content="家族健康手帳のプライバシーポリシーです。お薬の記録はご自身のiCloudに、血圧と体調メモはこの端末の中だけに保存されます。ご家族が見られるのはお薬の記録だけです。開発者のサーバー・解析や広告の仕組みはありません。共有のやめ方と記録の消し方も書いています。">
+<meta property="og:title" content="家族健康手帳 — プライバシーポリシー">
+<meta property="og:description" content="お薬の記録はご自身のiCloudに、血圧と体調メモは端末の中だけに。ご家族が見られるのはお薬の記録だけです。開発者は記録を受け取りません。">
+<meta property="og:url" content="https://nosunosukawa.github.io/nomikiroku-site/privacy.html">
+<meta property="og:type" content="website">
 <style>
-  /* index.html と同じトークン・同じ文字の大きさ（アプリ本体の Design/Paper.swift 由来）。
-     読み手は60〜80代のご本人と、そのご家族。本文は18px以上・行間ゆったり。
-     法的な本文そのものは変えていない（見た目だけを index.html に合わせた） */
-  /* 意匠は index.html / support.html と同じトークン。
-     法的な本文そのものは1文字も変えていない（見た目だけを合わせた）。
-     第2波で最小の文字を 17px → 19px に上げた。 */
+  /* 意匠は index.html / support.html と同じトークン（アプリ本体の Design/Paper.swift 由来）。
+     読み手は60〜80代のご本人と、そのご家族。本文は19px以上・行間ゆったり。
+     2026-09-15: 血圧おぼえ帳の統合と改名に合わせて本文を書き直した（SPEC §4.6 の置き場所の表と一致させる） */
   :root{
     color-scheme:light dark;
     --bg:#FAF8F3; --card:#FFFFFF; --ink:#1D1B16; --ink-soft:#4E4A42;
@@ -48,7 +49,6 @@
   a:hover{text-decoration-thickness:2px}
   :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
 
-  /* ヘッダー: アプリ名が先。必須URLは下線リンクで残す */
   .head{border-bottom:1px solid var(--line)}
   .head-in{max-width:620px;margin:0 auto;padding:0 16px;
     display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 20px}
@@ -69,6 +69,11 @@
   .card ul{padding-left:1.3em;margin-top:12px}
   .card li{font-size:19px;margin-top:8px}
   .card li::marker{color:var(--accent)}
+  /* 置き場所の表。狭い画面では表だけが横に動く */
+  .tbl-wrap{overflow-x:auto;margin-top:12px}
+  table{border-collapse:collapse;width:100%;min-width:520px;font-size:18px;line-height:1.7}
+  th,td{border:1px solid var(--line-strong);padding:8px 10px;text-align:left;vertical-align:top}
+  thead th{background:var(--accent-soft)}
   .mailbtn{display:flex;align-items:center;justify-content:center;text-align:center;
     min-height:64px;margin-top:12px;padding:12px 14px;font-size:21px;font-weight:800;
     overflow-wrap:anywhere;color:var(--accent);background:var(--accent-soft);
@@ -85,7 +90,7 @@
 
 <div class="head">
   <div class="head-in">
-    <span class="head-name"><a href="index.html">母さん今日の薬まだかな？</a></span>
+    <span class="head-name"><a href="index.html">家族健康手帳</a></span>
     <nav class="head-links" aria-label="ほかのページ">
       <a href="index.html">最初のページ</a>
       <a href="support.html">サポート</a>
@@ -93,76 +98,135 @@
   </div>
 </div>
 
-<div class="wrap">
+<main class="wrap">
 
   <header>
-    <h1>母さん今日の薬まだかな？ — プライバシーポリシー</h1>
-    <p class="lead">母さん今日の薬まだかな？は、あなたの情報を一切収集しません。
-       記録はご自身の iCloud にだけ保存され、開発者が中身を見ることはできません。</p>
-    <p class="date">最終更新: 2026年9月6日</p>
+    <h1>家族健康手帳 — プライバシーポリシー</h1>
+    <p class="lead">開発者は、あなたの記録を受け取りません。
+       お薬の記録はご自身の iCloud に、血圧と体調メモはこの端末の中だけに保存されます。</p>
+    <p class="date">最終更新（この版の適用日）: 2026年9月15日</p>
   </header>
 
   <div class="card">
-      <h2>収集するもの</h2>
-      <p>ありません。このアプリにはアクセス解析・クラッシュレポート・広告識別子・
-         データを集める第三者SDKが1つも入っていません。開発者があなたのお薬の名前・
-         飲んだ記録・体調メモ・お名前・端末情報・位置情報を受け取ることはありません。
+      <h2 id="collect">開発者が受け取るもの</h2>
+      <p>ありません。開発者のサーバーはありません。アクセス解析・クラッシュレポート・広告・
+         広告識別子の仕組み（第三者の解析SDK・広告SDK）は、アプリに1つも入っていません。
          アカウント登録もありません。</p>
+      <p>開発者があなたのお薬の名前・飲んだ記録・血圧・脈拍・体調メモ・お名前・端末の情報・
+         位置情報を受け取ることはありません。</p>
   </div>
 
   <div class="card">
-      <h2>データの置き場所</h2>
-      <p>お薬・飲んだ記録・通院の予定・体調メモ・設定は、端末内のデータベースと、
-         <strong>ご自身の iCloud（Apple のアカウント）</strong>に保存されます。
-         機種を変えたときやアプリを入れ直したときに記録が消えないためのものです。</p>
-      <p>この保存先は Apple が提供する仕組み（CloudKit のプライベートデータベース）で、
-         <strong>開発者はここに入ったデータを見ることも取り出すこともできません</strong>。
-         開発者のサーバーは存在しません。</p>
-      <p>iCloud にサインインしていない場合や空きが足りない場合は、記録はその端末の中だけに
-         残ります。いまどちらの状態かは、アプリの設定の［iCloudへの保存］に常に表示しています。
-         アプリを削除すると端末内のデータは消えます（iCloud に入った分は、
-         同じ Apple ID で入れ直すと戻ります）。</p>
+      <h2 id="where">データの置き場所</h2>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">データ</th><th scope="col">置き場所</th><th scope="col">ご家族に見えるか</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>お名前・飲む時点と時刻・お薬・飲み方・飲んだ記録・お薬の残り・通院の予定</td>
+              <td>この端末と、ご自身の iCloud（CloudKit のプライベートデータベース）</td>
+              <td>共有をはじめたときだけ、下の「ご家族との共有」の内容が見えます</td>
+            </tr>
+            <tr>
+              <td>血圧（上・下）・脈拍・測った日時</td>
+              <td>この端末の中だけ。iCloud には保存しません</td>
+              <td>見えません。ご本人が「送る」を押したときだけ届きます</td>
+            </tr>
+            <tr>
+              <td>体調メモ</td>
+              <td>この端末の中だけ。iCloud には保存しません</td>
+              <td>見えません</td>
+            </tr>
+            <tr>
+              <td>ヘルスケアから読み取った値</td>
+              <td>保存しません（画面に出すあいだだけ使います）</td>
+              <td>見えません</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>iCloud に入るお薬の記録は、機種を変えたときやアプリを入れ直したときに記録が消えないためのものです。
+         この保存先は Apple が提供する仕組みで、<strong>開発者はここに入ったデータを見ることも
+         取り出すこともできません</strong>。</p>
+      <p>iCloud にサインインしていない場合や空きが足りない場合は、お薬の記録もその端末の中だけに残ります。
+         いまの状態は、アプリの［設定］の「記録の保存」に出しています。</p>
+      <p>血圧と体調メモは端末の中だけにあるため、アプリを削除すると消え、新しい iPhone には移りません。</p>
   </div>
 
   <div class="card">
-      <h2>ご家族との共有</h2>
-      <p>共有は<strong>初期状態でオフ</strong>です。ご自身で有効にしない限り、
-         誰にも記録は見えません。有効にするときは、共有される内容を箇条書きでお示しし、
-         別に同意のボタンを置いています（同意した日を保存します）。</p>
-      <p>共有できるのは<strong>お一人まで</strong>です。共有されるのは次の内容です。</p>
+      <h2 id="family">ご家族との共有（お薬の記録だけ）</h2>
+      <p>共有は<strong>はじめの状態ではオフ</strong>です。ご本人が有効にしない限り、誰にも記録は見えません。
+         有効にするときは、見えるようになる内容を箇条書きでお示しし、ご本人の同意のボタンを押してから
+         始まります（同意した日を保存します）。共有できるのは<strong>お一人まで</strong>です。</p>
+      <p>ご家族に見えるのは、次のお薬に関する内容だけです。</p>
       <ul>
         <li>お薬の名前と薬効分類</li>
         <li>飲んだ・飲まなかったの記録</li>
         <li>お薬の残りと、終わる見込みの日</li>
         <li>次の受診の予定</li>
-        <li>体調メモ（<strong>共有しない設定にできます。</strong>そのときは送られません）</li>
       </ul>
+      <p><strong>血圧・脈拍・体調メモ・ヘルスケアから読み取った値は、共有に含まれません。</strong></p>
       <p>受け渡しは Apple の仕組み（CloudKit の共有）で行われ、開発者のサーバーは経由しません。
-         共有は<strong>いつでも1タップで止められ、止めるとご家族の画面からはすぐに
-         見えなくなります</strong>（ご家族の端末に記録を保存しない作りにしているためです）。</p>
-      <p>ご家族が代わりに記録を付けることもできます。その分には「家族が記録」と印が残り、
-         お医者さんに渡す紙にも印が出ます。ご家族ができるのは記録を付けることだけで、
-         お薬の追加・削除・処方の変更はできません。</p>
+         ご家族は代わりに「飲んだ・飲まなかった」を記録できます。その分には「家族が記録」と印が残ります。
+         ご家族は、お薬の追加・削除・飲み方の変更はできません。</p>
+  </div>
+
+  <div class="card">
+      <h2 id="send">血圧をご家族に送るとき</h2>
+      <p>血圧は、ご本人が［手帳］の「血圧を家族に送る」を開き、送る内容を画面で確かめてから
+         「メッセージで送る」または「ほかの方法で送る」を押したときだけ、ご家族に届きます。
+         送るのは、選んだ期間の<strong>値（上・下・脈拍）と日時だけ</strong>です。
+         自動で送ったり、ご家族の端末に知らせたりすることはありません。</p>
+      <p>送った内容は、ご本人が選んだメッセージなどのアプリで相手に届きます。
+         開発者のサーバーは経由しません。</p>
+  </div>
+
+  <div class="card">
+      <h2 id="health">ヘルスケア（HealthKit）</h2>
+      <p>アプリの［設定］で「ヘルスケアと連携する」をオンにしたときだけ、ヘルスケアを使います。
+         はじめの状態ではオフです。</p>
+      <ul>
+        <li><strong>読み取り</strong>: ヘルスケアの血圧・脈拍を、アプリの画面に並べて表示するために読み取ります。
+            読み取った値は<strong>このアプリの中に保存せず、開発者にも送らず、iCloud への保存やご家族との共有にも使いません</strong>。</li>
+        <li><strong>書き込み</strong>: ご本人がこのアプリに入力した血圧・脈拍を、ヘルスケアにも書き加えます。</li>
+      </ul>
+      <p>ヘルスケアのデータを、広告・宣伝・データの販売に使うことはありません。</p>
+  </div>
+
+  <div class="card">
+      <h2 id="stop">共有のやめ方と、記録の消し方</h2>
+      <ul>
+        <li><strong>ご家族との共有をやめる</strong>: アプリの［設定］→「家族と共有」→「共有をやめる」。
+            やめると、ご家族の画面からはすぐに見えなくなります（ご家族の端末には記録を保存しない作りです）。</li>
+        <li><strong>ヘルスケア連携をやめる</strong>: アプリの［設定］で「ヘルスケアと連携する」をオフにします。
+            読み書きの許可そのものは、iPhone の［ヘルスケア］アプリ →ご自身のアイコン →［App］から変えられます。
+            ヘルスケアに書き加えた値は、ヘルスケアアプリの中で消せます。</li>
+        <li><strong>血圧の記録を1件ずつ消す</strong>: 記録を開いて「この記録を消す」を押します。</li>
+        <li><strong>端末の中の記録をすべて消す</strong>: アプリを削除します。血圧・体調メモを含め、端末の中の記録が消えます。</li>
+        <li><strong>iCloud に入ったお薬の記録を消す</strong>: 先に共有をやめてから、iPhone の［設定］→ご自身のお名前 →［iCloud］→ ストレージの管理 から、このアプリのデータを削除します。</li>
+      </ul>
   </div>
 
   <div class="card">
       <h2>作った紙と書き出したファイル</h2>
-      <p>持参薬リスト・災害時のお薬カード・服薬の記録（PDF）と、表の形で書き出した
-         ファイル（CSV）は、あなたの端末の中で作られます。どこかへ自動で送られることは
-         ありません。印刷・保存・送信の宛先は、そのつどあなたが選びます。</p>
+      <p>持参薬リスト・災害時のお薬カード・服薬の記録・血圧の記録（PDF）と、表の形で書き出した
+         ファイル（CSV）は、あなたの端末の中で作られます。どこかへ自動で送られることはありません。
+         印刷・保存・送信の宛先は、そのつどあなたが選びます。</p>
   </div>
 
   <div class="card">
       <h2>お知らせ（通知）</h2>
-      <p>お薬の時間のお知らせは、この端末の中だけで組み立てられます。
+      <p>お薬の時間や血圧を測る時間のお知らせは、この端末の中だけで組み立てられます。
          開発者のサーバーからのプッシュ通知は使っていません。</p>
-      <p>お知らせの文面には、既定でお薬の名前を入れません。ロック画面に薬名が出ると、
+      <p>お知らせの文面には、はじめの状態ではお薬の名前を入れません。ロック画面に薬名が出ると、
          ご病気が他の方に伝わってしまうためです。設定で表示に変えることもできます。</p>
   </div>
 
   <div class="card">
       <h2>購入</h2>
-      <p>「母さん今日の薬まだかな？ Plus」の決済は Apple が App Store を通じて処理します。
+      <p>「家族健康手帳プラス」の決済は Apple が App Store を通じて処理します。
          アプリはこの Apple ID が購入済みかどうかを Apple に問い合わせるだけで、
          お支払いの情報がアプリや開発者に渡ることはありません。</p>
   </div>
@@ -171,36 +235,44 @@
       <h2>お薬の情報の出典</h2>
       <p>アプリに入っているお薬の名前と薬効分類は、厚生労働省の
          薬価基準収載品目リスト（内用薬・注射薬・外用薬）を出典としています。
-         本アプリが検索用に加工しています。この参照はすべて端末内で行われ、
-         通信は発生しません。</p>
+         本アプリが検索用に加工しています。この参照はすべて端末内で行われ、通信は発生しません。</p>
   </div>
 
   <div class="card">
       <h2>子どもについて</h2>
-      <p>このアプリは一般向けのユーティリティです。子どもを含め、誰からも
-         意図的に情報を収集することはありません。</p>
+      <p>このアプリは一般向けの記録アプリです。子どもを含め、誰からも意図的に情報を集めることはありません。</p>
   </div>
 
   <div class="card">
       <h2>このウェブサイトの計測</h2>
-      <p>このウェブサイト（アプリではありません）は、訪問数を知るために Cloudflare Web Analytics を使っています。Cookie を使わず、個人を特定する情報は集めません。アプリからは引き続き何も送られません。</p>
+      <p>このウェブサイト（アプリではありません）は、訪問数を知るために Cloudflare Web Analytics を使っています。Cookie を使わず、個人を特定する情報は集めません。アプリからは何も送られません。</p>
   </div>
 
   <div class="card">
-      <h2>変更と連絡先</h2>
-      <p>このポリシーを変更する場合は、更新した本文をアプリと一緒に配布し、
-         このページにも新しい日付で掲載します。</p>
-      <p>このポリシーについてのご質問:</p>
+      <h2 id="contact">変更と連絡先</h2>
+      <p>このポリシーを変更する場合は、このページに新しい日付で掲載し、改定の記録を残します。</p>
+      <p>このポリシーについてのご質問（記録の数値や画面の写しは送らないでください）:</p>
       <a class="mailbtn" href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a>
   </div>
 
-  <footer>
-    © 2026 Nobutaka Kawasaki<br>
-    <a href="index.html">最初のページ</a> ·
-    <a href="support.html">サポート</a> ·
-    <a href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a>
-  </footer>
+  <div class="card">
+      <h2 id="history">改定の記録</h2>
+      <ul>
+        <li>2026年9月15日: アプリ名を「家族健康手帳」に改めました。血圧の記録とヘルスケア連携を加え、
+            データの置き場所（血圧・体調メモは端末の中だけ）、ご家族との共有の範囲（お薬の記録だけ）、
+            血圧を送るとき、共有のやめ方と記録の消し方を書き直しました。</li>
+        <li>2026年9月6日: 以前の版。</li>
+      </ul>
+  </div>
 
-</div>
+</main>
+
+<footer class="wrap">
+  © 2026 Nobutaka Kawasaki<br>
+  <a href="index.html">最初のページ</a> ·
+  <a href="support.html">サポート</a> ·
+  <a href="mailto:nosunosukawa@gmail.com">nosunosukawa@gmail.com</a>
+</footer>
+
 </body>
 </html>
